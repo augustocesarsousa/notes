@@ -265,7 +265,7 @@ Após feita a alteração e salvado o arquivo temos duas opções, a primeira é
 
 Após esses procedimentos o acesso remoto via usuário **root** está liberado.
 
-## Consultando hitórico de comandos
+## Consultando histórico de comandos
 
 Para consultar o histórico de comandos no Linux, utilizamos o comando **history**, ele irá apresentar uma lista com os ultimos 1000 comandos executados com um **ID** na frente.
 
@@ -297,3 +297,27 @@ Ao executar os comandos acima, nota-se que o **history** apenas exibe o **ID** e
 **Sintaxe**
 
 `export HISTTIMEFORMAT="%c "`
+
+## Criando usuário
+
+Para criar um usuário em um sistema Linux via terminal, utilizamos o comando **useradd** mais o nome do usuário para criá-lo, porem isso apenas cria um usuário em "branco", precisamos utilizar mais alguns parâmetros para criarmos um usuário completo, o primeiro parâmetro é o **-m**, ele informa que seja criado o diretório para esse usuário dentro do diretório **home**, o segundo parâmetro é o **-c**, ele permite que possa ser informado o nome completo para o usuário que queremos criar, o terceiro parâmetro é o **-s**, ele permite que possa ser informado o **Shell** padrão que o usuário irá usar, por ultimo temos o parâmetro -p para definir a senha do usuário, porém esse parâmetro exige que a senha informada já esteja **encriptada** mas podemos contornar essa questão utilizando o comando **openssl**.
+
+**Sintaxe**
+
+- Criando o usuário **joao**, definindo o nome completo como **João da Silva** e adicionando o **bash** como **Shell** padrão.<br>
+  `sudo useradd joao -m -c "João da Silva" -s /bin/bash`
+- Adicionando uma senha para o usuário **joao**<br>
+  `sudo passwd joao`
+- Criando o usuário **maria**, definindo o nome completo como **Maria da Silva** e adicionando o **bash** como **Shell** padrão e definindo a senha como **Maria123\***.<br>
+  `sudo useradd maria -m -c "Maria da Silva" -s /bin/bash -p $(openssl passwd -crypt Maria123)`
+
+## Editando usuário
+
+Para editar um usuário em um sistema Linux via terminal, utilizamos o comando **usermod**, supondo que criamos o usuário **joao** mas esquecemos de definir o **Shell** padrão, podemos utilizar o **usermod** para fazer essa alteração.
+
+**Sintaxe**
+
+- Adicionando o **bash** ao usuário **joao**<br>
+  `sudo usermod joao -s /bin/bash`
+- Adicionando uma data de expiração ao usuário **joao**<br>
+  `sudo usermod joao -e 31/12/2023`
