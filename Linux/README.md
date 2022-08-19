@@ -352,3 +352,73 @@ Para deletar um grupo de usuário utilizamoso comando **groupdel**, mas para del
 
 - Deletando o grupo **grupo4**<br>
   `sudo groupdel grupo4`
+
+## Verificando as propriedades de um arquivo ou diretório
+
+Para verificar as propriedades de um arquivo ou diretório podemos utilizar o comando **ls -l** ou abreviado **ll** no diretório onde o arquivo ou diretório que queremos analisar se encontra.
+
+**Exemplo**
+
+Executando o comando **ll** na diretório **/**, temos a seguinte saída:
+
+```
+lrwxrwxrwx   1 root root    7 Mar 24 18:40 bin -> usr/bin
+drwxr-xr-x   2 root root 4.0K Mar 24 18:47 boot
+drwxr-xr-x   9 root root 2.8K Aug 19 17:13 dev
+drwxr-xr-x 131 root root  12K Aug 19 17:13 etc
+drwxr-xr-x   4 root root 4.0K May  4 13:51 home
+-rwxr-xr-x   3 root root 1.4M Jan 27  2022 init
+lrwxrwxrwx   1 root root    7 Mar 24 18:40 lib -> usr/lib
+lrwxrwxrwx   1 root root    9 Mar 24 18:40 lib32 -> usr/lib32
+lrwxrwxrwx   1 root root    9 Mar 24 18:40 lib64 -> usr/lib64
+lrwxrwxrwx   1 root root   10 Mar 24 18:40 libx32 -> usr/libx32
+drwx------   2 root root  16K Apr 10  2019 lost+found
+drwxr-xr-x   2 root root 4.0K Mar 24 18:40 media
+drwxr-xr-x   6 root root 4.0K Aug  5 16:15 mnt
+drwxr-xr-x   3 root root 4.0K May  3 17:21 opt
+dr-xr-xr-x 155 root root    0 Aug 19 17:13 proc
+drwx------   3 root root 4.0K Aug 17 18:32 root
+drwxr-xr-x   6 root root  120 Aug 19 17:13 run
+lrwxrwxrwx   1 root root    8 Mar 24 18:40 sbin -> usr/sbin
+drwxr-xr-x   6 root root 4.0K Mar 24 18:42 snap
+drwxr-xr-x   2 root root 4.0K Mar 24 18:40 srv
+dr-xr-xr-x  11 root root    0 Aug 19 17:13 sys
+drwxrwxrwt 113 root root  20K Aug 19 17:14 tmp
+drwxr-xr-x  14 root root 4.0K Mar 24 18:41 usr
+drwxr-xr-x  13 root root 4.0K Mar 24 18:42 var
+```
+
+Analisando a saída, acima cada linha representa um item dentro do diretório **/**, podemos dividir cada linha em sete colunas que juntas informam as propriedades dos itens, vamos analizar cada coluna da primeira linha:<br>
+
+`lrwxrwxrwx 1 root root 7 Mar 24 18:40 bin -> usr/bin`
+
+Na primeira coluna **lrwxrwxrwx**, o primeiro caractere **l** informa o tipo do item, no qual temos três opções:
+
+- **l** para **links**
+- **d** para **diretórios**
+- **-** para **aquirvos**
+
+Depois do primeiro caractere temos três conjuntos representados pelos caracteres **rwx**, que informam as permições dos items, o primeiro representa as permições do **proprietário** do item, o segundo representa as permições do **grupo** do item e o terceito representa as permições dos outros usuários, cada um dos três caracteres representa um tipo de permição conforme abaixo:
+
+- **r** permite a leitura do item
+- **w** permite a escrita/edição do item
+- **x** permite a execução do item
+- **-** representa a ausência da permição
+
+A segunda coluna **1** representa a quantidade de conteúdo que o item possui.
+A terceira coluna **root** representa o proprietáio do item.
+A quarta coluna **root** representa o grupo do item.
+A quinta coluna **7** representa o tamanho do item em **bytes**.
+A sexta coluna **Mar 24 18:40** representa o data da ultima modificação do item.
+E a sétima **bin -> usr/bin** coluna representa o nome do item (em caso de links, também é mostrado o caminho para onde ele leva).
+
+## Alterando proprietário/grupo de um arquivo ou diretório
+
+Para alterar proprietário/grupo de um arquivo ou diretório utilizamos o comando **chown** seguido do **novo proprietário** e o **novo grupo** que queremos alterar.
+
+**Sintaxe**
+
+- Alterando proprietário/grupo do arquivo **teste.txt** para proprietário **maria** e grupo **grupo1**
+  `sudo chown maria:grupo1 teste.txt`
+- Alterando proprietário/grupo do diretório **Documentos** para proprietário **jose** e grupo **grupo2**
+  `sudo chown maria:grupo1 /Documentos/`
