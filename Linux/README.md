@@ -19,7 +19,7 @@ Para acessar uma máquina Linux via Linux, utilizamos o **terminal**, com ele ab
 
 `ssh usuario@192.0.1.100`
 
-Após digitado o comando precionamos a tecla **Enter**, será solicitado o **password** do usuário informado na conexão.
+Após digitado o comando pressionamos a tecla **Enter**, será solicitado o **password** do usuário informado na conexão.
 
 ### Acessando uma máquina Linux na nuvem (AWS)
 
@@ -60,8 +60,8 @@ O comando **ls** lista arquivos e diretórios.
 
 - Listando arquivos e diretórios dentro do diretório atual<br>
   `ls`
-- Listando arquivos e diretórios dentro do diretório Documents<br>
-  `ls Documents`
+- Listando arquivos e diretórios dentro do diretório Documentos<br>
+  `ls Documentos`
 - Listando arquivos e diretórios dentro do diretório atual onde a primeira letra do nome começa com **p**<br>
   `ls p*`
 - Listando arquivos e diretórios dentro do diretório atual onde a primeira letra do nome começa com **m**, a segunda pode ser **qualquer** caractere, a terceira letra é igual à **g** e o restante pode ser qualquer outra cadeia de caracteres<br>
@@ -116,7 +116,7 @@ Para abrir um documento com o nano basta informar o nome do arquivo ou o caminho
 **Sintaxe**
 
 `nano teste.txt`<br>
-`nano /home/usuario/Documents/teste.txt`
+`nano /home/usuario/Documentos/teste.txt`
 
 ### Salvando um documento
 
@@ -182,7 +182,7 @@ O parâmetro **--help** apresenta uma descrição do comando junto com uma lista
 
 ### man
 
-O comando **man** possui a mesma funcção do parâmetro **help**, porém ele apresenta as descrições em um formato de "manual" (utilize a tecla **q** para sair do modo de visualização).
+O comando **man** possui a mesma função do parâmetro **help**, porém ele apresenta as descrições em um formato de "manual" (utilize a tecla **q** para sair do modo de visualização).
 
 **Sintaxe**
 
@@ -204,13 +204,13 @@ O comando **cat** lê e exibe o conteúdo de um arquivo texto no terminal
 - Lendo o conteúdo do arquivo **teste.txt**<br>
   `cat teste.txt`
 - Lendo o conteúdo do arquivo **teste.txt** utilizando o diretório absoluto<br>
-  `cat /home/usuario/Documents/teste.txt`
+  `cat /home/usuario/Documentos/teste.txt`
 
 ## Executando tarefas como administrador do sistema
 
 ### sudo
 
-Por padrão os usuários comuns só podem executar tarefas dentro dos seus respectivos diretórios, para executar tarefas em outros diretórios ou tarefas administrativas do sistema devemos utilizar o comando **sudo** que permite executar tarefas com previlégios de administrador, quando utilizado o comando **sudo** exige a senha do usuário.
+Por padrão os usuários comuns só podem executar tarefas dentro dos seus respectivos diretórios, para executar tarefas em outros diretórios ou tarefas administrativas do sistema devemos utilizar o comando **sudo** que permite executar tarefas com privilégios de administrador, quando utilizado o comando **sudo** exige a senha do usuário.
 
 **Sintaxe**
 
@@ -221,7 +221,7 @@ Por padrão os usuários comuns só podem executar tarefas dentro dos seus respe
 
 O super usuário **root** é o usuário administrador geral do sistema, ele não possui restrições de acesso, podendo fazer alterações em qualquer parte do sistema por isso o seu uso deve ser feito com muito cuidado.
 
-### Defininso uma senha
+### Definindo uma senha
 
 Por padrão no Ubuntu o **root** não possui uma senha mas não é uma boa prática deixa-lo sem senha, para isso utilizamos o comando **passwd**.<br>
 
@@ -267,7 +267,7 @@ Após esses procedimentos o acesso remoto via usuário **root** está liberado.
 
 ## Consultando histórico de comandos
 
-Para consultar o histórico de comandos no Linux, utilizamos o comando **history**, ele irá apresentar uma lista com os ultimos 1000 comandos executados com um **ID** na frente.
+Para consultar o histórico de comandos no Linux, utilizamos o comando **history**, ele irá apresentar uma lista com os últimos 1000 comandos executados com um **ID** na frente.
 
 **Sintaxe**
 
@@ -275,13 +275,13 @@ Para consultar o histórico de comandos no Linux, utilizamos o comando **history
   `history`
 - Consultando os últimos 50 comandos<br>
   `history 50`
-- Consultando os ultimos comandos com o termo **nano**<br>
+- Consultando os últimos comandos com o termo **nano**<br>
   `history | grep "nano"`
 - Executando o comando 13<br>
   `!13`
 - Executando o último comando<br>
   `!!`
-- Executando o último comando que possuim o termo **nan**<br>
+- Executando o último comando que possuem o termo **nan**<br>
   `!?nan?`
 - Limpando o history<br>
   `history -c`
@@ -324,7 +324,7 @@ Para editar um usuário em um sistema Linux via terminal, utilizamos o comando *
 
 ## Adicionando, editando e removendo grupos ao usuário
 
-Podemos difinir para qual grupo queremos colocar o usuário na hora da sua criação utilizando o parâmetro **-G** e informar um ou mais grupos ao qual queremos que ele pertença, para editar o grupo de um usuário utilizamos o comando **usermod** e também parâmetro **-G**, para remover um grupo do usuário utilizamos o comando **gpasswd** junto ao parâmetro **-d**.
+Podemos difinir para qual grupo queremos colocar o usuário na hora da sua criação utilizando o parâmetro **-G** e informar um ou mais grupos ao qual queremos que ele pertença, para editar o grupo de um usuário utilizamos o comando **usermod** e também o parâmetro **-G**, para remover um grupo do usuário utilizamos o comando **gpasswd** junto ao parâmetro **-d**.
 
 **Sintaxe**
 
@@ -337,7 +337,7 @@ Podemos difinir para qual grupo queremos colocar o usuário na hora da sua cria�
 
 ## Criando grupos de usuários
 
-Para criar um grupo de usuário utilizamoso comando **groupadd**
+Para criar um grupo de usuário utilizamos o comando **groupadd**
 
 **Sintaxe**
 
@@ -346,7 +346,7 @@ Para criar um grupo de usuário utilizamoso comando **groupadd**
 
 ## Deletando grupos de usuários
 
-Para deletar um grupo de usuário utilizamoso comando **groupdel**, mas para deletar um grupo ele não pode ter nenhum usuário associado a ele.
+Para deletar um grupo de usuário utilizamos o comando **groupdel**, mas para deletar um grupo ele não pode ter nenhum usuário associado a ele.
 
 **Sintaxe**
 
@@ -388,7 +388,7 @@ drwxr-xr-x  14 root root 4.0K Mar 24 18:41 usr
 drwxr-xr-x  13 root root 4.0K Mar 24 18:42 var
 ```
 
-Analisando a saída, acima cada linha representa um item dentro do diretório **/**, podemos dividir cada linha em sete colunas que juntas informam as propriedades dos itens, vamos analizar cada coluna da primeira linha:<br>
+Analisando a saída, acima cada linha representa um item dentro do diretório **/**, podemos dividir cada linha em sete colunas que juntas informam as propriedades dos itens, vamos analisar cada coluna da primeira linha:<br>
 
 `lrwxrwxrwx 1 root root 7 Mar 24 18:40 bin -> usr/bin`
 
@@ -396,20 +396,20 @@ Na primeira coluna **lrwxrwxrwx**, o primeiro caractere **l** informa o tipo do 
 
 - **l** para **links**
 - **d** para **diretórios**
-- **-** para **aquirvos**
+- **-** para **arquirvos**
 
-Depois do primeiro caractere temos três conjuntos representados pelos caracteres **rwx**, que informam as permições dos items, o primeiro representa as permições do **proprietário** do item, o segundo representa as permições do **grupo** do item e o terceito representa as permições dos outros usuários, cada um dos três caracteres representa um tipo de permição conforme abaixo:
+Depois do primeiro caractere temos três conjuntos representados pelos caracteres **rwx**, que informam as permissões dos items, o primeiro representa as permissões do **proprietário** do item, o segundo representa as permissões do **grupo** do item e o terceiro representa as permissões dos outros usuários, cada um dos três caracteres representa um tipo de permissão conforme abaixo:
 
 - **r** permite a leitura do item
 - **w** permite a escrita/edição do item
 - **x** permite a execução do item
-- **-** representa a ausência da permição
+- **-** representa a ausência da permissão
 
 A segunda coluna **1** representa a quantidade de conteúdo que o item possui.
-A terceira coluna **root** representa o proprietáio do item.
+A terceira coluna **root** representa o proprietário do item.
 A quarta coluna **root** representa o grupo do item.
 A quinta coluna **7** representa o tamanho do item em **bytes**.
-A sexta coluna **Mar 24 18:40** representa o data da ultima modificação do item.
+A sexta coluna **Mar 24 18:40** representa a data da última modificação do item.
 E a sétima **bin -> usr/bin** coluna representa o nome do item (em caso de links, também é mostrado o caminho para onde ele leva).
 
 ## Alterando proprietário/grupo de um arquivo ou diretório
@@ -422,3 +422,23 @@ Para alterar proprietário/grupo de um arquivo ou diretório utilizamos o comand
   `sudo chown maria:grupo1 teste.txt`
 - Alterando proprietário/grupo do diretório **Documentos** para proprietário **jose** e grupo **grupo2**
   `sudo chown maria:grupo1 /Documentos/`
+
+## Alterando permissões de um arquivo/diretório
+
+Já sabemos como identificar quais permissões um arquivo/diretório possui, agora veremos como alterar essas permissões, para isso utilizamos o comando **chmod** seguido de **3 dígito** onde cada um é a soma do valor das permissões que queremos atribuir para cada tipo de usuário, e depois o arquivo/diretório que estamos alterando as permissões, abaixo uma tabela com os valores de cada permissão:
+
+| permissão    | valor |
+| ------------ | ----- |
+| Leitura (r)  | 4     |
+| Gravação (w) | 2     |
+| Execução (x) | 1     |
+| Nenhum (-)   | 0     |
+
+**Sintaxe**
+
+- Utilizando a tabela acima caso desejamos dar apenas a permissão de **gravação (2)** para o **proprietário** do arquivo/diretório, permissão de **leitura (4)** para o **grupo** onde o arquivo/diretório pertence e **nenhum (0)** para os **outros usuários** no arquivo **teste.txt** o comando ficaria assim<br>
+  `sudo chmod 240 teste.txt`
+- Alterando a permissão de **leitura (4)** mais **gravação (2)** para **todos os usuários** no diretório **Documentos**<br>
+  `sudo chmod 666 /Documentos/`
+- Liberando todas as permissões **(4+2+1)** para **todos os usuários** no arquivo **teste2.txt**<br>
+  `sudo chmod 777 teste2.txt`
