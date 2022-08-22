@@ -418,9 +418,9 @@ Para alterar proprietário/grupo de um arquivo ou diretório utilizamos o comand
 
 **Sintaxe**
 
-- Alterando proprietário/grupo do arquivo **teste.txt** para proprietário **maria** e grupo **grupo1**
+- Alterando proprietário/grupo do arquivo **teste.txt** para proprietário **maria** e grupo **grupo1**<br>
   `sudo chown maria:grupo1 teste.txt`
-- Alterando proprietário/grupo do diretório **Documentos** para proprietário **jose** e grupo **grupo2**
+- Alterando proprietário/grupo do diretório **Documentos** para proprietário **jose** e grupo **grupo2**<br>
   `sudo chown maria:grupo1 /Documentos/`
 
 ## Alterando permissões de um arquivo/diretório
@@ -459,9 +459,9 @@ Para fazer o gerenciamento dos pacotes do sistema, podemos utilizar o comando **
   `sudo apt install net-tools`
 - Removendo o pacote **net-tools** (requer perfil de administrador)<br>
   `sudo apt remove net-tools`
-- Adicionando repositório no **apt**
+- Adicionando repositório no **apt**<br>
   `sudo apt edit-sources`
-- Instalando arquivos **.DEB**
+- Instalando arquivos **.DEB**<br>
   `sudo apt install ./nome_do_arquivo.deb`
 
 ### Atualizando o sistema
@@ -472,3 +472,47 @@ Para fazer o gerenciamento dos pacotes do sistema, podemos utilizar o comando **
   `sudo apt update`
 - Atualiando os pacotes<br>
   `sudo apt upgrade`
+
+## Gerenciando discos
+
+Os discos em sistemas Linux são representados pela sigla **sda** onde **a** informa a unidade do disco, exemplo, em caso de se pussior dois discos na máquina, eles iriam aparecer como **sda** e **sdb**, já as partições são identificadas por números, exemplo se o disco **sda** tiver duas partições dentro dele, elas serão representadas como **sda1** e **sda2**.
+
+**Sintaxe**
+
+- Listando discos existentes<br>
+  `lsblk` ou `sudo fdisk -l`
+
+### Adicioando um novo disco
+
+Supondo que acabamos de adicionar um novo disco em branco ao sistema e ele foi identificado como **sdc**, precisamos então formatar esse disco para poder usá-lo.
+
+**Sintaxe**
+
+- Adicionando uma nova partição ao disco **sdc**<br>
+  `sudo fdisk /dev/sdc`
+
+O sistema irá solicitar uma opção, utilizaremos **n** para criar uma nova partição, depois utilizamos **p** para adicionar a partição como **primária**, depois utilizamos a opção **1** para informar o número da nova partição, depois informamos o valor do setor onde a nova partição irá iniciar e terminar, como iremos utilizar todo o disco utilizaremos os valores **default** propostos pelo sistema, por fim utilizamos **w** para confirmar as alterações.
+
+- Formatando o disco **sdc**<br>
+  `sudo mkfs.ext4 /dev/sdc`
+
+- Montando o disco **sdc**<br>
+  `sudo mkdir /mnt/sdc`
+  `sudo mount /dev/sdc /mnt/sdc`
+
+- Desmontando o disco **sdc**<br>
+  `sudo umoubt /dev/sdc`
+
+### Montando um novo automaticamente
+
+Para montar um disco automaticamente, devemos editar o arquivo **fstab** que fica dentro do diretório **/etc**.
+
+**Sintaxe**
+
+`sudo nano fstab`
+
+Depois informamos no fim do arquivo qual disco queremos montar, onde ele será montando e qual o sistema de arquivos.
+
+**Sintaxe**
+
+`/dev/sdc /disk3 ext4 defaults 0 0`
