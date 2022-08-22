@@ -461,3 +461,14 @@ Para fazer o gerenciamento dos pacotes do sistema, podemos utilizar o comando **
   `sudo apt remove net-tools`
 - Adicionando repositório no **apt**
   `sudo apt edit-sources`
+- Instalando arquivos **.DEB**
+  `sudo apt install ./nome_do_arquivo.deb`
+
+### Atualizando o sistema
+
+**Sintaxe**
+
+- Atualiando a lista de pacotes<br>
+  `sudo apt update`
+- Atualiando os pacotes<br>
+  `sudo apt upgrade`
