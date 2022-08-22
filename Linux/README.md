@@ -442,3 +442,22 @@ Já sabemos como identificar quais permissões um arquivo/diretório possui, ago
   `sudo chmod 666 /Documentos/`
 - Liberando todas as permissões **(4+2+1)** para **todos os usuários** no arquivo **teste2.txt**<br>
   `sudo chmod 777 teste2.txt`
+
+## Gerenciando pacotes
+
+Para fazer o gerenciamento dos pacotes do sistema, podemos utilizar o comando **apt**:
+
+**Sintaxe**
+
+- Listando os pacotes disponíveis<br>
+  `apt list`
+- Listando os pacotes instalados<br>
+  `apt list --installed`
+- Listando os pacotes que podem ser atualizados<br>
+  `apt list --upgradeable`
+- Instalando o pacote **net-tools** (requer perfil de administrador)<br>
+  `sudo apt install net-tools`
+- Removendo o pacote **net-tools** (requer perfil de administrador)<br>
+  `sudo apt remove net-tools`
+- Adicionando repositório no **apt**
+  `sudo apt edit-sources`
