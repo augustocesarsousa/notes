@@ -542,3 +542,12 @@ Para mover arquivos e diretórios, utilizamos o comando **mv** mais o arquivo/di
 
 - Movendo o arquivo **teste.txt** do diretório **Documentos** para o diretório **Teste**<br>
   `mv ./teste.txt /home/usuario/Teste`
+
+## Renomeando arquivos/diretórios
+
+Para renomear arquivos/diretórios, também utilizamos o comando **mv** informando o arquivo/diretório que queremos renomear e em seguida o seu novo nome.
+
+**Sintaxe**
+
+- Renomeando o arquivo **teste.txt** dentro do diretório **Teste**
+  `mv ./teste.txt ./novo_texte.txt`
