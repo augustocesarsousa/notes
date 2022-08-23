@@ -503,7 +503,7 @@ O sistema irá solicitar uma opção, utilizaremos **n** para criar uma nova par
 - Desmontando o disco **sdc**<br>
   `sudo umoubt /dev/sdc`
 
-### Montando um novo automaticamente
+### Montando um disco novo automaticamente
 
 Para montar um disco automaticamente, devemos editar o arquivo **fstab** que fica dentro do diretório **/etc**.
 
@@ -516,3 +516,20 @@ Depois informamos no fim do arquivo qual disco queremos montar, onde ele será m
 **Sintaxe**
 
 `/dev/sdc /disk3 ext4 defaults 0 0`
+
+## Copiando arquivos/diretórios
+
+Para copiar um arquivo/diretório utilizamos o comando **cp**, caso estejamos na raíz onde o arquivo/diretório se encontra basta, utilizamos **./nome_do_arquivo_ou_diretorio**, mas também podemos informar seu **diretório absoluto** e em seguida o diretório paraonde desejamos fazer a cópia. por padrão o comando **cp** não copia diretórios, para isso devemos utilizar o parâmetro **-r**.
+
+**Sintaxe**
+
+- Copiando o arquivo **teste.txt** do diretório **/home/usuario/Documentos** para o diretório **/home/usuario/Teste**<br>
+  `cp /home/usuario/teste.txt /home/usuario/Teste`
+- Copiando todos os arquivos com extenção **.txt** para o diretório **Teste**<br>
+  `cp ./*.txt /home/usuario/Teste`
+- Copiando todos os arquivos e diretórios do diretório **Documetos** para o diretório **Teste**<br>
+  `cp -r ./* /home/usuario/Teste`
+- Copiando todos os arquivos e diretórios do diretório **Documetos** para o diretório **Teste** e mostrando o que está sendo copiado<br>
+  `cp -r -v ./* /home/usuario/Teste`
+- Copiando todos os arquivos e diretórios do diretório **Documetos** para o diretório **Teste** e perguntando se deseja sobreescrever caso os arquivos já existam<br>
+  `cp -r -i ./* /home/usuario/Teste`
