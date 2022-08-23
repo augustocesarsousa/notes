@@ -519,24 +519,24 @@ Depois informamos no fim do arquivo qual disco queremos montar, onde ele será m
 
 ## Copiando arquivos/diretórios
 
-Para copiar um arquivo/diretório utilizamos o comando **cp**, caso estejamos na raíz onde o arquivo/diretório se encontra basta, utilizamos **./nome_do_arquivo_ou_diretorio**, mas também podemos informar seu **diretório absoluto** e em seguida o diretório paraonde desejamos fazer a cópia. por padrão o comando **cp** não copia diretórios, para isso devemos utilizar o parâmetro **-r**.
+Para copiar um arquivo/diretório utilizamos o comando **cp**, caso estejamos na raiz onde o arquivo/diretório se encontra basta, utilizamos **./nome_do_arquivo_ou_diretorio**, mas também podemos informar seu **diretório absoluto** e em seguida o diretório para onde desejamos fazer a cópia. por padrão o comando **cp** não copia diretórios, para isso devemos utilizar o parâmetro **-r**.
 
 **Sintaxe**
 
 - Copiando o arquivo **teste.txt** do diretório **/home/usuario/Documentos** para o diretório **/home/usuario/Teste**<br>
   `cp /home/usuario/teste.txt /home/usuario/Teste`
-- Copiando todos os arquivos com extenção **.txt** para o diretório **Teste**<br>
+- Copiando todos os arquivos com extensão **.txt** para o diretório **Teste**<br>
   `cp ./*.txt /home/usuario/Teste`
-- Copiando todos os arquivos e diretórios do diretório **Documetos** para o diretório **Teste**<br>
+- Copiando todos os arquivos e diretórios do diretório **Documentos** para o diretório **Teste**<br>
   `cp -r ./* /home/usuario/Teste`
-- Copiando todos os arquivos e diretórios do diretório **Documetos** para o diretório **Teste** e mostrando o que está sendo copiado<br>
+- Copiando todos os arquivos e diretórios do diretório **Documentos** para o diretório **Teste** e mostrando o que está sendo copiado<br>
   `cp -r -v ./* /home/usuario/Teste`
-- Copiando todos os arquivos e diretórios do diretório **Documetos** para o diretório **Teste** e perguntando se deseja sobreescrever caso os arquivos já existam<br>
+- Copiando todos os arquivos e diretórios do diretório **Documentos** para o diretório **Teste** e perguntando se deseja sobrescrever caso os arquivos já existam<br>
   `cp -r -i ./* /home/usuario/Teste`
 
 ## Movendo arquivos/diretórios
 
-Para mover arquivos e diretórios, utilizamos o comando **mv** mais o arquivo/diretório que desejamos mover e o diretório de destino, uma observação sobre o comando **mv** é que ele não possuim o parâmetro **-r**, portando não é possível mover um diretório que possuia conteúdo, antes será necessário entrar no diretório e mover seu conteúdo antes.
+Para mover arquivos e diretórios, utilizamos o comando **mv** mais o arquivo/diretório que desejamos mover e o diretório de destino, uma observação sobre o comando **mv** é que ele não possuem o parâmetro **-r**, portando não é possível mover um diretório que possuía conteúdo, antes será necessário entrar no diretório e mover seu conteúdo antes.
 
 **Sintaxe**
 
@@ -551,3 +551,13 @@ Para renomear arquivos/diretórios, também utilizamos o comando **mv** informan
 
 - Renomeando o arquivo **teste.txt** dentro do diretório **Teste**
   `mv ./teste.txt ./novo_texte.txt`
+
+## Processos
+
+### Visualizando processos que estão em execusão
+
+Para visualizar os processos que estão em execusão utilizamos o comando **ps** mais os parâmentros, **a** para visualizar os processos de todos os usuários. **u** para visualizar o nome e hora dos usuários, **x** para visualizar os processos chamados via ambiente gráfico.
+
+**Sintaxe**
+
+`ps aux`
