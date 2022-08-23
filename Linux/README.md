@@ -533,3 +533,12 @@ Para copiar um arquivo/diretório utilizamos o comando **cp**, caso estejamos na
   `cp -r -v ./* /home/usuario/Teste`
 - Copiando todos os arquivos e diretórios do diretório **Documetos** para o diretório **Teste** e perguntando se deseja sobreescrever caso os arquivos já existam<br>
   `cp -r -i ./* /home/usuario/Teste`
+
+## Movendo arquivos/diretórios
+
+Para mover arquivos e diretórios, utilizamos o comando **mv** mais o arquivo/diretório que desejamos mover e o diretório de destino, uma observação sobre o comando **mv** é que ele não possuim o parâmetro **-r**, portando não é possível mover um diretório que possuia conteúdo, antes será necessário entrar no diretório e mover seu conteúdo antes.
+
+**Sintaxe**
+
+- Movendo o arquivo **teste.txt** do diretório **Documentos** para o diretório **Teste**<br>
+  `mv ./teste.txt /home/usuario/Teste`
