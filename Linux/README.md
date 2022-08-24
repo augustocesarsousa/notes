@@ -322,6 +322,15 @@ Para editar um usuário em um sistema Linux via terminal, utilizamos o comando *
 - Adicionando uma data de expiração ao usuário **joao**<br>
   `sudo usermod joao -e 31/12/2023`
 
+## Deletando usuário
+
+Para deletar um usuário, utilizamos o comando **userdel** mais o parâmetros, **-r** para deletar o diretório **home** e o **email** e **-f** para forçar o deleção.
+
+**Sintaxe**
+
+- Deletando o usuário **joao**
+  `sudo userdel -r -f joao`
+
 ## Adicionando, editando e removendo grupos ao usuário
 
 Podemos difinir para qual grupo queremos colocar o usuário na hora da sua criação utilizando o parâmetro **-G** e informar um ou mais grupos ao qual queremos que ele pertença, para editar o grupo de um usuário utilizamos o comando **usermod** e também o parâmetro **-G**, para remover um grupo do usuário utilizamos o comando **gpasswd** junto ao parâmetro **-d**.
