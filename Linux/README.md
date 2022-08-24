@@ -570,3 +570,32 @@ Para visualizar os processos que estão em execusão utilizamos o comando **ps**
 **Sintaxe**
 
 `ps aux`
+
+## Servidor de arquivos
+
+- Criando a pasta que será comparilhada<br>
+  `sudo mkdir /disk3/publica`
+- Liberando o acesso para todos os usuários na pasta<br>
+  `chmod 777 /disk3/publica`
+
+### SAMBA
+
+- Instalação<br>
+  `sudo apt install samba`
+- Abrir o arquivo smb.conf para configurar a pasta de compartilhamento<br>
+  `sudo nano /etc/samba/smb.conf`
+- Adicionar os registros na última linha do arquivo<br>
+
+```
+[publica]
+
+path = /disk3/publica
+writable = yes
+guest ok = yes
+guest only = yes
+```
+
+- Reiniciar o serviço do **SAMBA** para reconhecer as alterações<br>
+  `sudo systemctl restart smbd`
+- Verificando o status do serviço<br>
+  `sudo systemctl status smbd`
