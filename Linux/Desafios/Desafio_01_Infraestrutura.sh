@@ -1,43 +1,28 @@
 #!/usr/bin/env bash
 
+# Criar os diretórios /publico, /adm, /ven e /sec
+# Criar os grupos GRP_ADM, GRP_VEN e GRP_SEC
+# Criar os usuários amanda, carlos, debora, joao, josefina, maria, roberto, rogerio e sebastiana
+# Adicionar os usuários carlos, maria e joao ao grupo GRP_ADM
+# Adicionar os usuários debora, sebastiana e roberto ao grupo GRP_VEN
+# Adicionar os usuários amanda, josefina e rogerio ao grupo GRP_SEC
+# O dono de todos os diretórios criados será o usuário root
+# Todos os usuários terão permissão total dentro do diretório publico
+# Os usuários de cada grupo terão permissão total dentro de seu respectivo diretório
+# Os usuários não poderão ter permissão de leitura, escrita e execução em diretórios de departamentos que eles não pertencem
+
 #CORES
 VERDE='\e[1;92m'
 SEM_COR='\e[0m'
 
-echo -e "${VERDE}[INFO] - Deletando diretórios antigos...${SEM_COR}"
-
-rm -rf /publico
-rm -rf /adm
-rm -rf /ven
-rm -rf /sec
-rm -rf /home/*
-
-echo -e "${VERDE}[INFO] - Deletando grupos antigos...${SEM_COR}"
-
-groupdel GRP_ADM
-groupdel GRP_VEN
-groupdel GRP_SEC
-
-echo -e "${VERDE}[INFO] - Deletando usuários antigos...${SEM_COR}"
-
-sudo userdel -r -f carlos
-sudo userdel -r -f maria
-sudo userdel -r -f joao_
-sudo userdel -r -f debora
-sudo userdel -r -f sebastiana
-sudo userdel -r -f roberto
-sudo userdel -r -f josefina
-sudo userdel -r -f amanda
-sudo userdel -r -f rogerio
-
-echo -e "${VERDE}[INFO] - Criando diretórios novos...${SEM_COR}"
+echo -e "${VERDE}[INFO] - Criando diretórios ${SEM_COR}"
 
 mkdir /adm
 mkdir /publico
 mkdir /sec
 mkdir /ven
 
-echo -e "${VERDE}[INFO] - Criando grupos novos...${SEM_COR}"
+echo -e "${VERDE}[INFO] - Criando grupos ${SEM_COR}"
 
 groupadd GRP_ADM
 groupadd GRP_SEC
