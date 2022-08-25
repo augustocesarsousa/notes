@@ -599,3 +599,15 @@ guest only = yes
   `sudo systemctl restart smbd`
 - Verificando o status do serviço<br>
   `sudo systemctl status smbd`
+
+## Servidor Web
+
+### Apache
+
+- Instalação<br>
+  `sudo apt install apache2`
+- Verificando o status do serviço<br>
+  `sudo systemctl status apache2`
+- Caso de servidor **AWS**, liberar o protocolo **HTTP**
+- Local dos arquivos da aplicação web<br>
+  `/var/www/html/`
