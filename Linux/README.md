@@ -611,3 +611,20 @@ guest only = yes
 - Caso de servidor **AWS**, liberar o protocolo **HTTP**
 - Local dos arquivos da aplicação web<br>
   `/var/www/html/`
+
+## Servidor de banco de dados
+
+### MySQL
+
+- Instalação<br>
+  `sudo apt install mysql-server-8.0`
+- Acessando o banco de dados<br>
+  `mysql -u root -p`
+- Listando databases<br>
+  `show databases;`
+- Criando database<br>
+  `create database teste_db;`
+- Utilizando a database criada<br>
+  `use teste_db;`
+- Saindo do banco de dados<br>
+  `exit`
