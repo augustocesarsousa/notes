@@ -17,7 +17,7 @@ Os Padrões de Projetos Criacionais são utilizados quando precisamos padronizar
 
 ### Factory Method
 
-O padrão Factory pode ser utilizado quando os objetos criados possam variar dentro de uma mesmo **modelo**, com ela colocamos a lógica de criação dentro da Factory e ao invoca-la, ela pode receber uma instância que implementa uma **classe abstrata** ou **interface**.
+O padrão Factory Method pode ser utilizado quando os objetos criados precisam variar dentro de um mesmo **modelo**, com ela colocamos as regras de criação dentro da Factory e ao invocá-la passamos por parâmetro o que desejamos que seja criado.
 
 **Exemplo**
 
@@ -38,7 +38,7 @@ class Monstro {
 }
 ```
 
-Agora temos a três classes que implementam o modelo criando um montro de cada tipo:
+Agora temos a três classes que implementam o modelo criando um monstro de cada tipo:
 
 ```mermaid
 classDiagram
@@ -58,7 +58,7 @@ class MonstroVoador {
 }
 ```
 
-Agora criamos nossa Factory que possui a lógica de criação dos montros utilizando como parâmetro o nível que é passado:
+Agora criamos nossa Factory que possui a lógica de criação dos monstros utilizando como parâmetro o nível que é passado:
 
 ```mermaid
 classDiagram
