@@ -178,3 +178,65 @@ Agora no cliente basta invocarmos a Abstract Factory e passar o nível do grupo 
 Abaixo a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/creational/abstract_factory_method)
+
+### Singleton
+
+O padrão Singleton é utilizado quando precisamos criar um objeto **mutável** de instância **única** que é compartilhado globalmente dentro do nosso sistema, assim quando uma alteração é feita nesse objeto ela é observada por todos os objetos que o possuem em sua composição.
+
+Para criarmos um objeto de instância única fazemos com que ele instancie a si mesmo dentro do seu método construtor, depois modificamos o acesso do seu construtor como privado para que ele não possa ser instanciado por outro objeto, por fim criamos um método que possa prover essa instância quando ele é invocado.
+
+**Exemplo**
+
+Agora em nosso jogo queremos criar um objeto **Dia** que será compartilhado pelos mapas, esse objeto irá conter a data e o turno que será um **enum** com os turnos do dia (manhã, tarde e noite), esse objeto terá uma única instância porque não queremos mapas com dias e turnos diferentes, abaixo temos os modelos:
+
+```mermaid
+classDiagram
+    class Turno {
+        <<enum>>
+        MANHA
+        TARDE
+        NOITE
+    }
+
+    class Dia {
+        -singleton : Dia
+        -data : Date
+        -turno : Turno
+        -dateFormat : DateFormat
+        -Dia() void
+        +getInstance() Dia
+        +getData() String
+        +getTurno() Turno
+        +setTurno(turno : Turno)void
+    }
+```
+
+Agora adicionamos o atributo **dia** no nosso modelo de **mapa**:
+
+```mermaid
+classDiagram
+    Mapa <|-- MapaCavernaSecreta
+    Mapa <|-- MapaFlorestaMistica
+    class Mapa {
+        <<abstract>>
+        #dia : Dia
+        +Mapa(dia : Dia)
+        +descricaoMapa() void
+    }
+
+    class MapaCavernaSecreta {
+        +MapaCavernaSecreta(dia : Dia)
+        +descricaoMapa() void
+    }
+
+    class MapaFlorestaMistica {
+        +MapaFlorestaMistica(dia : Dia)
+        +descricaoMapa() void
+    }
+```
+
+Agora quando quisermos criar nossos mapas passamos a instância do **dia** por parâmetro, assim todos os mapas criados terão os mesmos dados do **dia** e quando uma alteração é feita no **dia** todos os mapas enxergarão essa mudança.
+
+Abaixo a implementação desse padrão em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/creational/singleton)
