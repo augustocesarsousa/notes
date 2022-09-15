@@ -240,3 +240,76 @@ Agora quando quisermos criar nossos mapas passamos a instância do **dia** por p
 Abaixo a implementação desse padrão em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/creational/singleton)
+
+### Builder
+
+Utilizamos o padrão Buider quando queremos criar representações diferentes de um mesmo objeto complexo, exemplo, queremos criar um objeto **pessoa** que possui vários atributos, porém, na hora da criação do objeto nem todas as pessoas irão possuir os mesmos atributos, uma pessoa pode ter um e-mail, outra não, uma pessoa pode ter dois números de telefone, outra apenas um, e por aí vai. A forma padrão de criarmos essas representações seria através da sobrecarga do método construtor, porém em objetos com muitos atributos isso se torna inviável, é nesse cenário que o Builder entra.
+
+**Exemplo**
+
+Vamos utilizar como exemplo a criação dos personagens do nosso jogo, o Builder nos dá a opção de definir que alguns atributos sejam obrigatórios, no nosso caso vamos definir o nome e o tipo do personagem como atributos obrigatórios, os outros atributos serão definidos conforme cada tipo de personagem onde o tipo será um enum com as classes (arqueiro, guerreiro ou mago), temos abaixo os modelos:
+
+```mermaid
+classDiagram
+    class Tipo {
+        <<enum>>
+        ARQUEIRO
+        GUERREIRO
+        MAGO
+    }
+
+    class Personagem {
+        -nome : String
+        -tipo : Tipo
+        -level : Integer
+        -armaPrincipal : String
+        -armaSecundaria : String
+        -escudo : String
+        -armadura : String
+        -roupao : String
+        -magias : String[]
+        +getters() N
+        +setters(n : N)
+        +toString() void
+    }
+```
+
+Agora criamos nosso Builder que será responsável pela criação dos personagens:
+
+```mermaid
+classDiagram
+    class PersonagemBuilder {
+        -nome : String
+        -tipo : Tipo
+        -level : Integer
+        -armaPrincipal : String
+        -armaSecundaria : String
+        -escudo : String
+        -armadura : String
+        -roupao : String
+        -magias : String[]
+        +PersonagemBuilder(nome : String, tipo : Tipo)
+        +armaPrincipal(arma : String) PersonagemBuilder
+        +armaSecundaria(arma : String) PersonagemBuilder
+        +escudo(escudo : String) PersonagemBuilder
+        +armadura(armadura : String) PersonagemBuilder
+        +roupao(armadura : String) PersonagemBuilder
+        +magias(magias : String[]) PersonagemBuilder
+        +criar() Personagem
+    }
+```
+
+Agora no cliente, para criarmos o personagem chamamos o Builder e informamos os atributos que desejamos:
+
+```
+    Personagem personagem = new PersonagemBuilder("Légolas", Tipo.ARQUEIRO)
+        .armaPrincipal("Arco Leve")
+        .armaSecundaria("Espada Leve")
+        .armadura("Armadura Leve")
+        .magias(Arrays.asList("Flecha de Vento", "Esgrima Élfica"))
+        .criar();
+```
+
+No exemplo acima, utilizamos uma variação do Builder chamada **fluent**, abaixo a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/creational/builder)
