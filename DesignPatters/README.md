@@ -313,3 +313,41 @@ Agora no cliente, para criarmos o personagem chamamos o Builder e informamos os 
 No exemplo acima, utilizamos uma variação do Builder chamada **fluent**, abaixo a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/creational/builder)
+
+### Prototype
+
+Utilizamos o padrão Prototype quando queremos criar um objeto a partir de um objeto pré-existente onde desejamos alterar algumas características, evitando a criação de um objeto do zero. Praticamente o Prototype é um **clone** do objeto original, o Java já possui uma interface que faz o clone de um objeto, mas caso precisemos podemos alterar o método para cumprir as especificações que desejamos.
+
+**Exemplo**
+
+Agora em nosso jogo queremos criar monstros diferentes dentro da mesma espécie, porém não queremos criar um monstro do zero, então, utilizamos o Prototype para fazer um clone de um monstro já existente e alteramos as características que desejamos, temos o modelo abaixo:
+
+```mermaid
+classDiagram
+    class Monstro {
+        -nome : String
+        -porte : String
+        -habitat : String
+        -classe : String
+        -level : Integer
+        -arma : String
+        -ataque : Ataque
+        +getters() N
+        +setters(n : N)
+        +clone() Monstro
+    }
+
+    class Ataque {
+        -nome : String
+        -descricao : String
+        +getters() N
+        +setters(n : N)
+        +clone() Ataque
+    }
+```
+
+No cliente criaremos dois monstros onde um será da classe **Soldado** e o outro será um **Chefe**, que foi clonado de um soldado e foram feitas as alterações.
+
+Abaixo, temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/creational/prototype)
