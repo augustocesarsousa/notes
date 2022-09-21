@@ -351,3 +351,107 @@ No cliente criaremos dois monstros onde um será da classe **Soldado** e o outro
 Abaixo, temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/creational/prototype)
+
+## Padrões de Projetos Estruturais
+
+Os padrões estruturais são utilizados quando precisamos estruturar objetos e classes de forma extensível e flexível.
+
+### Adapter
+
+Utilizamos o padrão Adapter quando precisamos adaptar um objeto ou classe de forma que ele possa se integrar com outros objetos e classes não compatíveis previamente. Usando um exemplo no mundo real, quando utilizamos um adaptador de tomadas onde nossa tomada possiu três pinos, porém o plug da parede possui apenas dois, utilizamos então um adaptador para fazer a tomada de três pinos encaixar no plug de dois.
+
+**Exemplo**
+
+Vamos utilizar como exemplo um computador que possui uma porta HDMI e queremos conectá-lo a uma TV que também possui uma porta HDMI, essa conexão irá funcionar sem problemas e o computador transmitirá vídeo e áudio para a TV, porém agora queremos conectar o mesmo computador só que em um monitor que possui apenas um porta VGA, então utilizamos um adaptador que fará a conexão e irá converter o sinal vindo da porta HDMI do computador para a porta VGA do monitor porém o monitor não irá reproduzir áudio, porque o cabo VGA transmite apenas sinal de vídeo. Vamos representar este senário em forma de objetos.
+
+Primeiro criamos as interfaces HDMI e VGA com seus respectivos métodos:
+
+```mermaid
+classDiagram
+    class HDMI {
+        <<interface>>
+        +setImave(image : String) void
+        +setSound(sound : String) void
+    }
+
+    class VGA {
+        <<interface>>
+        +setImave(image : String) void
+    }
+```
+
+Agora criamos os dispositivos TV e OldMonitor, que implementam as interfaces:
+
+```mermaid
+classDiagram
+    HDMI <|-- TV
+    VGA <|-- OldMonitor
+    class HDMI {
+        <<interface>>
+        +setImave(image : String) void
+        +setSound(sound : String) void
+    }
+
+    class TV {
+        +setImave(image : String) void
+        +setSound(sound : String) void
+    }
+    class VGA {
+        <<interface>>
+        +setImave(image : String) void
+    }
+
+    class OldMonitor {
+        +setImave(image : String) void
+    }
+```
+
+Agora criamos nosso computador com uma porta HDMI:
+
+```mermaid
+classDiagram
+    class Computer {
+        -port : HDMI
+        +connectPort(screen : HDMI) void
+        +sendImageAndSound(image : String, sound : String) void
+    }
+```
+
+Agora criamos o nosso adaptador que implementa a interface HDMI fará a conexão da porta HDMI do computador para a porta VGA do monitor:
+
+```mermaid
+classDiagram
+    HDMI <|-- HDMIToVGAAdapter
+    class HDMI {
+        <<interface>>
+        +setImave(image : String) void
+        +setSound(sound : String) void
+    }
+
+    class HDMIToVGAAdapter {
+        -vga : VGA
+        +HDMIToVGAAdapter(vga : VGA) void
+        +setImage(image : String) void
+        +setSound(sound : String) void
+    }
+```
+
+Por fim no nosso cliente instanciamos nosso objetos e fazemos as conexões:
+
+```
+    System.out.println("Computer with TV");
+    Computer computer = new Computer();
+    TV tv = new TV();
+    computer.connectPort(tv);
+    computer.sendImageAndSound("Trailer Avengers", "Sound theme");
+
+    System.out.println("Computer with Old monitor");
+    Computer computer2 = new Computer();
+    OldMonitor oldMonitor = new OldMonitor();
+    computer2.connectPort(new HDMIToVGAAdapter(oldMonitor));
+    computer2.sendImageAndSound("Trailer Justice League", "Sound theme");
+```
+
+Abaixo temos a implementação do código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/estructural/adapter)
