@@ -454,4 +454,50 @@ Por fim no nosso cliente instanciamos nosso objetos e fazemos as conexões:
 
 Abaixo temos a implementação do código:
 
-[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/estructural/adapter)
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/adapter)
+
+### Bridge
+
+Utilizamos o padrão Bridge quando precisamos que a abstração e a implementação possam variar independentemente em tempo de execução.
+
+**Exemplo**
+
+Temos um sistema de cadastro de funcionários e queremos encaminhar os dados para outros dois sistemas, um sistema lê dados em formato CSV e o outro lê dados em formato JSON, utilizamos o padrão Bridge para criarmos essa "ponte" entre os dados e os sistemas fazendo que as informações possam ser convertidas da forma que desejamos, no diagrama abaixo temos:
+
+```mermaid
+classDiagram
+    Employee <|-- Manager
+    Employee <|-- Seller
+    Converter <|-- CSVConverter
+    Converter <|-- JSONConverter
+    Converter ..> Employee
+    class Employee {
+        <<interface>>
+        name : String
+        age : Integer
+        salary : Double
+    }
+
+    class Seller {
+    }
+
+    class Manager {
+    }
+    
+    class Converter {
+        <<interface>>
+        getEmployeeFormatted(Employee employee) String
+    }
+
+    class CSVConverter {
+    }
+
+    class JSONConverter {
+    }
+```
+
+Analisando o diagrama, nós temos a abstração **Employee** que define um funcionário representado por uma **interface** e duas implementações, **Manager** e **Seller**, depois temos a abstração **Converter** com o método **getEmployeeFormatted** que define a formatação do **Employee** informado, e duas implementações, **CSVConverter** que irá converter o **Employee** para CSV e **JSONConverter** que irá converter o **Employee** para JSON. Desta forma podemos converter o mesmo Employee tanto para CSV quanto para JSON em tempo de execução e não precisando criar uma implementação para cada tipo de Employee.
+
+Abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/bridge)
