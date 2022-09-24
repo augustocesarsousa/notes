@@ -483,7 +483,7 @@ classDiagram
 
     class Manager {
     }
-    
+
     class Converter {
         <<interface>>
         getEmployeeFormatted(Employee employee) String
@@ -501,3 +501,37 @@ Analisando o diagrama, nós temos a abstração **Employee** que define um funci
 Abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/bridge)
+
+### Composite
+
+Utilizamos o padrão Composite quando queremos que um objeto ou um conjunto deles possam ser tratados de forma transparente, sem diferenças. Para isso definimos uma composição que contenha tanto um único objeto quanto um conjunto dos mesmos elementos, representando estruturas hierárquicas.
+
+**Exemplo**
+
+```mermaid
+classDiagram
+    FileSystemItem <|-- File
+    FileSystemItem <|-- Folder
+    FileSystemItem <--* Folder
+    class FileSystemItem {
+        <<interface>>
+        +print()
+    }
+
+    class File {
+        -name : String
+        +print()
+    }
+
+    class Folder {
+        -name : String
+        -children : FileSystemItem []
+        +print()
+    }
+```
+
+Analisando o diagrama acima temos dois objetos distintos, **File** que representa uma **parte** e o **Folder** que representa um **todo**, agora pra tratarmos esses objetos da mesma forma temos um interface **FileSystemItem** onde tanto o **File** quanto o **Folder** implementam essa interface, notamos também que dentro do Folder temos um atributo **children** que é uma lista de FIleSystemItem, ou seja, dentro do Folder podemos ter outros Folders ou Files representando assim uma recursividade.
+
+Abaixo temos a representação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/composite)
