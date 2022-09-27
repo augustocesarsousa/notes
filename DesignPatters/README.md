@@ -535,3 +535,59 @@ Analisando o diagrama acima temos dois objetos distintos, **File** que represent
 Abaixo temos a representação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/composite)
+
+### Decorator
+
+Utilizamos o padrão Decorator quando queremos adicionar funcionalidades dinamicamente em um objeto.
+
+**Exemplo**
+
+Vamos utilizar como exemplo a criação de bebidas onde temos a **interface** **Drink** que fornece o modelo da bebida, depois temos duas bebidas **Coffee** e **Tea** que implementam a interface Drink. Agora queremos adicionar um pouco de leite ao nosso café criando então um **CoffeWithMilk**, poderíamos criar um nova classe que estenderia a classe Coffee, mas supondo que temos **N** combinações para nosso café, seria necessário criar uma classe para cada nova funcionalidade, o padrão **Decorator** serve para nos auxiliar nesses tipos de situações onde nós "decoramos" a classe que queremos e adicionamos a nova funcionalidade, vamos analisar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Drink <|-- Coffee
+    Drink <|-- Tea
+    Drink <|-- DrinkDecorator
+    Drink <--* DrinkDecorator
+    DrinkDecorator <|-- Milk
+    DrinkDecorator <|-- DoubleDrink
+    class Drink {
+        +serve() void
+        +getPrice() Double
+    }
+
+    class Coffee {
+        +serve() void
+        +getPrice() Double
+    }
+
+    class Tea {
+        +serve() void
+        +getPrice() Double
+    }
+
+    class DrinkDecorator {
+        -drink : Drink
+        +serve() void
+        +getPrice() Double
+    }
+
+    class Milk {
+        +Milk(drink : Drink)
+        +serve() void
+        +getPrice() Double
+    }
+
+    class DoubleDrink {
+        +DoubleDrink(drink : Drink)
+        +serve() void
+        +getPrice() Double
+    }
+```
+
+Conforme o diagrama, temos a interface **Drink** e as classes concretas **Coffee** e **Tea** que implementam a interface, temos também a classe abstrata **DrinkDecorator** que adiciona uma funcionalidade as classes concretas, por fim criamos duas funcionalidades **Milk** que adiciona leite a nossa bebida e **DoubleDrink** que dobra a quantidade da nossa bebida.
+
+Abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/decorator)
