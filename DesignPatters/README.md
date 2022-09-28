@@ -553,6 +553,7 @@ classDiagram
     DrinkDecorator <|-- Milk
     DrinkDecorator <|-- DoubleDrink
     class Drink {
+        <<interface>>
         +serve() void
         +getPrice() Double
     }
@@ -568,6 +569,7 @@ classDiagram
     }
 
     class DrinkDecorator {
+        <<abstract>>
         -drink : Drink
         +serve() void
         +getPrice() Double
@@ -591,3 +593,53 @@ Conforme o diagrama, temos a interface **Drink** e as classes concretas **Coffee
 Abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/decorator)
+
+### Facade
+
+Utilizamos o padrão Facade quando queremos simplificar o acesso a serviços de um sistema complexo.
+
+**Exemplo**
+
+Vamos utilizar como exemplo um sistema bancário onde o cliente precisa ter acesso a alguns serviços do cartão de crédito, mas não podemos nossas entidades ao cliente, criamos então uma interface de acesso, abstraindo apenas as informações relevantes para os serviços solicitados, vamos analisar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Client *--|> BankFacade
+    BankFacade *--|> CardService
+    BankFacade *--|> RegisterService
+    BankFacade *--|> PaymentService
+    BankFacade *--|> ReportService
+    BankFacade *--|> SecurityService
+    class BankFacade {
+        +getCardByNumber()
+        +getSumary(card : Card)
+        +getPaymentInfoByCard(card : Card)
+        +cancelLastRegister(card : Card)
+    }
+    class CardService {
+        +getCardByNumber()
+        +removeCard(card : Card)
+        +createNewCard()
+    }
+    class RegisterService {
+        +getRegisterByCard(card : Card)
+        +removeByIndex(card : Card, index : Integer)
+        +deleteCardRegisters(card : Card)
+        +addCardRegisters(card : Card, register : Register)
+    }
+    class PaymentService {
+        +getPaymentInfoByCard(card : Card)
+    }
+    class ReportService {
+        +getSumary(card : Card)
+    }
+    class SecurityService {
+        +blockCard(card : Card)
+    }
+```
+
+No diagrama acima o cliente acessa a **BankFacade** que representa nossa interface de acesso aos serviços, dessa forma podemos simplificar e abstrair apenas o necessário para executar as operações, livrando o cliente da complexidade, diminuindo o acoplamento, aumentando o encapsulamento e a segurança do nosso sistema.
+
+Abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/facade)
