@@ -643,3 +643,13 @@ No diagrama acima o cliente acessa a **BankFacade** que representa nossa interfa
 Abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/facade)
+
+### Flyweight
+
+Utilizamoso parão Flywaight quando queremos trabalhar com muitos objetos em memória de forma mais eficiente, com ele geramos uma espécie de **cache** onde armazenamos uma instância única com atributos intrísecos de um objeto e ao chamarmos essa intância adicionamos os outros atributos extrínsecos.
+
+**Exemplo**
+
+Vamos utilizar como exemplo um streaming de música onde uma música possui valores intrínsecos (nome, autor, duração) e valores extrínsecos (quantidade de vezes que a música foi tocada), os valores intrísecos podemos armazenar uma instância única em memória para todos os usuários e os valores extrínsecos nós iserimos para cada usuário.
+
+Vamos analisar o diagrama abaixo:kkkk
