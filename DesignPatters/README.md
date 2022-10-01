@@ -646,10 +646,50 @@ Abaixo temos a implementação em código:
 
 ### Flyweight
 
-Utilizamoso parão Flywaight quando queremos trabalhar com muitos objetos em memória de forma mais eficiente, com ele geramos uma espécie de **cache** onde armazenamos uma instância única com atributos intrísecos de um objeto e ao chamarmos essa intância adicionamos os outros atributos extrínsecos.
+Utilizamos o parão Flywaight quando queremos trabalhar com muitos objetos em memória de forma mais eficiente, com ele geramos uma espécie de **cache** onde armazenamos uma instância única com atributos intrínsecos de um objeto e ao chamarmos essa instância adicionamos os outros atributos extrínsecos.
 
 **Exemplo**
 
-Vamos utilizar como exemplo um streaming de música onde uma música possui valores intrínsecos (nome, autor, duração) e valores extrínsecos (quantidade de vezes que a música foi tocada), os valores intrísecos podemos armazenar uma instância única em memória para todos os usuários e os valores extrínsecos nós iserimos para cada usuário.
+Vamos utilizar como exemplo um streaming de música onde uma música possui valores intrínsecos (nome, autor, duração) e valores extrínsecos (quantidade de vezes que a música foi tocada), os valores intrínsecos podemos armazenar uma instância única em memória para todos os usuários e os valores extrínsecos nós inserimos para cada usuário.
 
-Vamos analisar o diagrama abaixo:kkkk
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Client --|> MusicService
+    MusicService *--|> Music
+    MusicService --|> FlyweightFactory
+    MusicService --|> MusicFlyweight    
+    Music *--|> MusicFlyweight
+    FlyweightFactory *--|> FlyweightFactory
+    FlyweightFactory *--|> MusicFlyweight
+    class MusicService {
+        -memory
+        +listenMusic()
+        +report()
+    }
+
+    class Music {
+        -musicFlyweight
+        -playerCount
+    }
+
+    class FlyweightFactory {
+        -repository : MusicFlyweight[]
+        -instance : FlyweightFactory
+        +getInstance() FlyweightFactory
+        +getMusic() MusicFlyweight
+    }
+
+    class MusicFlyweight {
+        -name
+        -artist
+        -duration
+    }
+```
+
+No diagrama acima, temos o **Client** que acessa o **MusicService** que é resposável por devolver uma música quando solicitado, temos um **FlyweightFactory** que é responsável por criar uma instância do **Flyweight** por música, temos o **MusicFlyweight** com os valores intrínsecos e o **Music** que possui os valores extrínsecos que muda a cada vez em que a música é tocada.
+
+Abaixo temos a implementação e código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/flyweight)
