@@ -693,3 +693,56 @@ No diagrama acima, temos o **Client** que acessa o **MusicService** que é respo
 Abaixo temos a implementação e código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/flyweight)
+
+### Mediator
+
+Utilizamos o padrão Mediator quando precisamos reduzir o acoplamento entre objetos que precisam se comunicar, tornando a comunicação mais dinâmica. O Mediator funciona como um "garoto de recados" onde os objetos não precisam se conhecer, basta enviar a mensagem para o Mediator que ele irá entrega-la para o destinatário.
+
+**Exemplo**
+
+Vamos utilizar como exemplo um chat, onde os usuários não se conhecem diretamente, para isso utilizamos um Mediator que recebe a mensagem e a entrega para o destinatário, podemos ter Mediator específicos para funções diferentes, como um Mediator apenas que envia a mensagem e outro que antes de enviar faz a tradução para a língua nativa do destinatário.
+
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Mediator <|-- TranslateMediator
+    Mediator <|-- ChatMediator
+    Mediator <|--* User
+    ChatMediator *--|> User
+    TranslateMediator *--|> User
+    User <|-- EnglishUser
+    User <|-- ProtugueseUser
+    class Mediator {
+        <<abstract>>
+        +addUser()
+        +removeUser()
+        +sendMessage(message, to, from)
+    }
+    class ChatMediator {
+        +addUser()
+        +removeUser()
+        +sendMessage(message, to, from)
+    }
+    class TranslateMediator {
+        +addUser()
+        +removeUser()
+        +sendMessage(message, to, from)
+    }
+    class User {
+        <<abstract>>
+        -name
+        -language
+        -mediator : Mediator
+        +User(name, mediator)
+        +sendMessage(message, to)
+        receivedMessage(from, message)
+    }
+
+```
+
+Temos então o nosso Mediator e duas variações, ChatMediator e TranslateMediator que são responsáveis por mandar e traduzir as mensagens, e temos o objeto User e suas variações EnglishUser e PortugueseUser, um para cada idioma, dessa forma, caso seja preciso adicionar novos idiomas basta criar outra variação.
+
+Abaixo a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/mediator)
