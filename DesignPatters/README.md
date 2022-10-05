@@ -746,3 +746,47 @@ Temos então o nosso Mediator e duas variações, ChatMediator e TranslateMediat
 Abaixo a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/mediator)
+
+### Proxy
+
+Utilizamos o padrão Proxy, quando queremos controlar o acesso a algum objeto, podendo modificar e ou adicionar funcionalidades.
+
+**Exemplo**
+
+Vamos utilizar como exemplo um sistema simplificado de um banco, onde o cliente pode acessar o objeto **Banco** e executar suas operação e também pode acessar o objeto **Caixa Eletrônico** e executar suas operações porém com algumas restrições é nesse ponto onde inserimos o Proxy.
+
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Client ..> BankOperations
+    Client ..> Bank
+    Client ..> ATM
+    BankOperations <|-- Bank
+    BankOperations <|-- ATM
+    BankOperations <|--* ATM
+    class BankOperations {
+        <<interface>>
+        +deposit()
+        +withdraw()
+        +changePassword()
+    }
+    class Bank {
+        +deposit()
+        +withdraw()
+        +changePassword()
+    }
+    class ATM {
+        -bank : BankOperations
+        +ATM(bank)
+        +deposit()
+        +withdraw()
+        +changePassword()
+    }
+```
+
+Temos então nosso Client que pode acessar o Bank e o ATM para executar sua operações, os objetos Bank e ATM implementam a interface BankOperations que define as operações que serão realizadas, porém o ATM possuem a implementação de um Proxy que faz um contro nas operações definindo certas limitações.
+
+Abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/proxy)
