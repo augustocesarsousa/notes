@@ -790,3 +790,43 @@ Temos então nosso Client que pode acessar o Bank e o ATM para executar sua oper
 Abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/structural/proxy)
+
+## Padrões de Projetos Comportamentais
+
+Os Padrões de Projetos Comportamentais são utilizados quando queremos definir como as responsabilidades são programadas, como os objetos se comunicam a fim de reforçar princípios da Orientação a Objeto como o baixo acoplamento.
+
+### Chain of Responsibility
+
+O primeiro padrão que abordaremos nesse tópico é o Chain of Responsibility, esse padrão é utilizados quando queremos evitar o acoplamento entre o remetente de uma solicitação e seu receptor, podem fazer com que mais de um objeto possa atender a mesma requisição. Esse padrão usa com princípio uma "corrente" onde cada objeto chamada executa uma tarefa e chama e próximo caso seja necessário.
+
+**Exemplo**
+
+Vamos usar como exemplo um caixa eletrônico onde informamos o valor do saque que queremos fazer e o processamento dentro do caixa irá analisar as notas disponíveis e retornará as quantidades necessárias. De uma forma mais simples podemos fazer esse processamento utilizando uma cadeia de **IFs** e **Elses** para analisar os valores das notas, porém dessa forma todas as nossas validações estaria embutidas dentro de uma mesma classe agregando um alto acoplamento em nosso sistema, aplicando o Chain of Resposibility podemos dividir as tarefas em outros objetos onde cada um será responsável por analisar um valor de nota, executar uma ação e caso necessário, chamar o próximo objeto.
+
+Vamos analizar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Dispenser *--|> Bill
+    Bill *--|> Bill    
+    Bill <.. BillOf1Instance
+    Bill <.. BillOf10Instance
+    Bill <.. BillOf20Instance
+    Bill <.. BillOf50Instance
+    Bill <.. BillOf100Instance
+    class Dispenser {
+        -chain : Bill
+        +withdraw(value)
+    }
+    class Bill {
+        -value : Integer
+        -next : Bill
+        +execute()
+    }
+```
+
+Analisando o diagrama acima temos o objeto **Bill** que representa uma nota com seu valor e o link para a próxima nota que deve ser chamada, temos abaixo as instâncias de notas com valores diferentes e por fim o **Dispenser** que é responsável por montar essa cadeia de notas e implementar o método de saque.
+
+No link abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/chainOfResponsibility)
