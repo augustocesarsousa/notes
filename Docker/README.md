@@ -51,7 +51,7 @@ sudo docker run hello-world
 
 Sintaxe de comandos:
 
-`docker <comando> <sub-comando> <opcoes>`
+`docker <comando> <sub-comando> <opções>`
 
 Exemplo:
 
@@ -95,13 +95,14 @@ Listando volumes:
 
 Sintaxe:
 
-`docker container run <opcoes> <nome do container>`
+`docker container run <opções> <nome do container>`
 
 Opções:
 
 - **-p** = troca a porta de rede do container para a porta informada
 - **-P** = troca a porta de rede do container para uma porta randômica
 - **-d** = executa o container no modo "detaxado" (libera o terminal)
+- **-name** = define um nome para o container
 
 Exemplo rodando o container **nginx** mudando a porta padrão de 80 para 9000 e liberando o terminal:
 
@@ -110,6 +111,10 @@ Exemplo rodando o container **nginx** mudando a porta padrão de 80 para 9000 e 
 Exemplo rodando o container **nginx** mudando a porta randomicamente e liberando o terminal:
 
 `docker container run -P -d nginx`
+
+Exemplo rodando o container **nginx** definindo o nome testhost:
+
+`docker container run -P -d --name testhost nginx`
 
 ### Parando um container
 
@@ -125,7 +130,7 @@ Exemplo:
 
 Sintaxe:
 
-`docker container rm <opcoes> <ID do container>`
+`docker container rm <opções> <ID do container>`
 
 Opções:
 
@@ -145,3 +150,55 @@ Opções:
 
 - **-a** = retornar a lista de todos os containers parados e executando
 - **-q** = retornar a lista de IDs dos containers que serão removidos
+
+### Visualizando o log de um container
+
+Sintaxe:
+
+`docker container logs <opções> <ID ou nome do container>`
+
+Opções:
+
+- **-f** = acompanha o log em tempo real (trava o terminal)
+
+Exemplo, verificando o log apenas uma vez:
+
+`docker container logs testhost`
+
+Exemplo, verificando o log em tempo real:
+
+`docker container logs -f testhost`
+
+### Visualizando os processos de um container
+
+Sintaxe:
+
+`docker container top <ID ou nome do container>`
+
+Exemplo:
+
+`docker container top testhost`
+
+### Visualizando os recursos utilizados pelos containers
+
+Sintaxe:
+
+`docker container stats` ou `docker container stats <ID ou nome do container>`
+
+Exemplo, visualizando os recursos de todos os containers:
+
+`docker container stats`
+
+Exemplo, visualizando os recursos de apenas um container:
+
+`docker container stats testhost`
+
+### Visualizando as configurações de um container
+
+Sintaxe:
+
+`docker container inspect <ID ou nome do container>`
+
+Exemplo, configurações do container **testhost**:
+
+`docker container inspect testhost`
