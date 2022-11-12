@@ -88,3 +88,60 @@ Listando redes:
 Listando volumes:
 
 `docker volume ls`
+
+## Gerenciando containers
+
+### Executando um container
+
+Sintaxe:
+
+`docker container run <opcoes> <nome do container>`
+
+Opções:
+
+- **-p** = troca a porta de rede do container para a porta informada
+- **-P** = troca a porta de rede do container para uma porta randômica
+- **-d** = executa o container no modo "detaxado" (libera o terminal)
+
+Exemplo rodando o container **nginx** mudando a porta padrão de 80 para 9000 e liberando o terminal:
+
+`docker container run -p 9000:80 -d nginx`
+
+Exemplo rodando o container **nginx** mudando a porta randomicamente e liberando o terminal:
+
+`docker container run -P -d nginx`
+
+### Parando um container
+
+Sintaxe:
+
+`docker container stop <ID do container>`
+
+Exemplo:
+
+`docker container stop 52528c8af607`
+
+### Removendo um container
+
+Sintaxe:
+
+`docker container rm <opcoes> <ID do container>`
+
+Opções:
+
+- **-f** = força a remoção mesmo se o container estiver rodando
+
+Exemplo:
+
+`docker container rm -f 52528c8af607`
+
+### Removendo vários containers ao mesmo tempo
+
+Sintaxe:
+
+`docker container rm $(docker container ls -a -q)`
+
+Opções:
+
+- **-a** = retornar a lista de todos os containers parados e executando
+- **-q** = retornar a lista de IDs dos containers que serão removidos
