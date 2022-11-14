@@ -126,6 +126,16 @@ Exemplo:
 
 `docker container stop 52528c8af607`
 
+### Iniciando um container parado
+
+Sintaxe:
+
+`docker container start <ID ou nome do container>`
+
+Exemplo:
+
+`docker container stop 52528c8af607`
+
 ### Removendo um container
 
 Sintaxe:
@@ -202,3 +212,63 @@ Sintaxe:
 Exemplo, configurações do container **testhost**:
 
 `docker container inspect testhost`
+
+### Acessando o terminal de um container
+
+Sintaxe:
+
+`docker container exec -it <ID ou nome do container> sh`
+
+Exemplo, configurações do container **testhost**:
+
+`docker container exec -it testhost sh`
+
+Para sair do terminal utilizamos o comando `exit`
+
+## Gerenciando redes
+
+### Criando uma nova rede
+
+Sintaxe:
+
+`docker network create <Nome da rede>`
+
+Exemplo:
+
+`docker network create test_network`
+
+### Criando uma nova rede e alterando o range de IP
+
+Sintaxe:
+
+`docker network create <Nome da rede> --subnet <IP> --gateway <IP>`
+
+Exemplo:
+
+`docker network create test_network2 --subnet 192.123.123.0/24 --gateway 192.123.123.1`
+
+### Verificando os status de uma rede
+
+Sintaxe:
+
+`docker network inspect <ID ou nome da rede>`
+
+Exemplo, configurações do container **testhost**:
+
+`docker network inspect test_network`
+
+### Removendo uma rede
+
+Sintaxe:
+
+`docker network rm <ID ou nome da rede>`
+
+Exemplo, configurações do container **testhost**:
+
+`docker network rm test_network`
+
+### Removendo todas as redes que não estão sendo usadas
+
+Sintaxe:
+
+`docker network prune`
