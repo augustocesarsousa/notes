@@ -272,3 +272,21 @@ Exemplo, configurações do container **testhost**:
 Sintaxe:
 
 `docker network prune`
+
+## Gerenciando volumes
+
+### Criando um novo volume
+
+Sintaxe:
+
+`docker volume create <Nome do volume>`
+
+Exemplo:
+
+`docker volume create postgres_db`
+
+### Criando um container e atribuindo um volume já criado
+
+Exemplo, atribuindo o volume **postgres_db** a um container postgres:
+
+`docker container run -d -e "POSTGRES_PASSWORD=postgres123" -p 5432:5432 -v /postgres_db:/var/lib/postgresql/data postgres`
