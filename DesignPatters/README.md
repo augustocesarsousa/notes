@@ -659,7 +659,7 @@ classDiagram
     Client --|> MusicService
     MusicService *--|> Music
     MusicService --|> FlyweightFactory
-    MusicService --|> MusicFlyweight    
+    MusicService --|> MusicFlyweight
     Music *--|> MusicFlyweight
     FlyweightFactory *--|> FlyweightFactory
     FlyweightFactory *--|> MusicFlyweight
@@ -808,7 +808,7 @@ Vamos analizar o diagrama abaixo:
 ```mermaid
 classDiagram
     Dispenser *--|> Bill
-    Bill *--|> Bill    
+    Bill *--|> Bill
     Bill <.. BillOf1Instance
     Bill <.. BillOf10Instance
     Bill <.. BillOf20Instance
@@ -830,3 +830,44 @@ Analisando o diagrama acima temos o objeto **Bill** que representa uma nota com 
 No link abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/chainOfResponsibility)
+
+### Memento
+
+Utilizamos o padrão Memento quando queremos capturar o estado de um objeto para que possamos restaurá-lo posteriormente, p odendo criar um lista de estados que podem ser acessados independentemente.
+
+**Exemplo**
+
+Vamos utilizar como exemplo um campo de texto onde podemos salvar os estados dos textos digitados e posteriormente podemos voltar a estes estados assim como funciona em um editor de texto com os comandos **Ctrl+Z** para voltar e **Ctrl+Shift+Z** para avançar.
+
+Vamos analizar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Client ..> Caretaker
+    Client ..> JTextAreaWithMemory
+    Caretaker *--|> Memento
+    JTextAreaWithMemory *--|> JTextAreaMemento
+    JTextAreaMemento --|> Memento
+    class Caretaker {
+        -mementos : Memento[]
+        +add(Memento)
+        +get(index) Memento
+    }
+    class JTextAreaWithMemory {
+        <<Originator>>
+        +save(Memento)
+        +restore(Memento)
+    }
+    class JTextAreaMemento {
+        -state
+    }
+    class JTextAreaMemento {
+        <<Interface>>
+    }
+```
+
+Analisando o diagrama acima, temos a classe **Client** que acessa a classe **Caretaker** que é responsávelpor gerar a lista de mementos, temos a classe **JTextAreaWithMemory** que possui os métodos responsáveis por salvar e retornar os estados, temos a classe **JTextAreaMemento** que encapsula o estado de um TextArea, e por fim temos a interface **Memento**.
+
+No link abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/memento)
