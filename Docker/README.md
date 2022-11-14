@@ -285,8 +285,18 @@ Exemplo:
 
 `docker volume create postgres_db`
 
-### Criando um container e atribuindo um volume já criado
+### Criando um container e atribuindo um volume
 
 Exemplo, atribuindo o volume **postgres_db** a um container postgres:
 
 `docker container run -d -e "POSTGRES_PASSWORD=postgres123" -p 5432:5432 -v /postgres_db:/var/lib/postgresql/data postgres`
+
+### Removendo volumes
+
+Sintaxe:
+
+`docker volume rm <Nome do volume>`
+
+Exemplo:
+
+`docker volume rm postgres2`
