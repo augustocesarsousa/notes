@@ -803,7 +803,7 @@ O primeiro padrão que abordaremos nesse tópico é o Chain of Responsibility, e
 
 Vamos usar como exemplo um caixa eletrônico onde informamos o valor do saque que queremos fazer e o processamento dentro do caixa irá analisar as notas disponíveis e retornará as quantidades necessárias. De uma forma mais simples podemos fazer esse processamento utilizando uma cadeia de **IFs** e **Elses** para analisar os valores das notas, porém dessa forma todas as nossas validações estaria embutidas dentro de uma mesma classe agregando um alto acoplamento em nosso sistema, aplicando o Chain of Resposibility podemos dividir as tarefas em outros objetos onde cada um será responsável por analisar um valor de nota, executar uma ação e caso necessário, chamar o próximo objeto.
 
-Vamos analizar o diagrama abaixo:
+Vamos analisar o diagrama abaixo:
 
 ```mermaid
 classDiagram
@@ -833,13 +833,13 @@ No link abaixo temos a implementação em código:
 
 ### Memento
 
-Utilizamos o padrão Memento quando queremos capturar o estado de um objeto para que possamos restaurá-lo posteriormente, p odendo criar um lista de estados que podem ser acessados independentemente.
+Utilizamos o padrão Memento quando queremos capturar o estado de um objeto para podermos restaurá-lo posteriormente, podendo criar uma lista de estados que podem ser acessados independentemente.
 
 **Exemplo**
 
 Vamos utilizar como exemplo um campo de texto onde podemos salvar os estados dos textos digitados e posteriormente podemos voltar a estes estados assim como funciona em um editor de texto com os comandos **Ctrl+Z** para voltar e **Ctrl+Shift+Z** para avançar.
 
-Vamos analizar o diagrama abaixo:
+Vamos analisar o diagrama abaixo:
 
 ```mermaid
 classDiagram
@@ -866,8 +866,64 @@ classDiagram
     }
 ```
 
-Analisando o diagrama acima, temos a classe **Client** que acessa a classe **Caretaker** que é responsávelpor gerar a lista de mementos, temos a classe **JTextAreaWithMemory** que possui os métodos responsáveis por salvar e retornar os estados, temos a classe **JTextAreaMemento** que encapsula o estado de um TextArea, e por fim temos a interface **Memento**.
+Analisando o diagrama acima, temos a classe **Client** que acessa a classe **Caretaker** que é responsável por gerar a lista de mementos, temos a classe **JTextAreaWithMemory** que possui os métodos responsáveis por salvar e retornar os estados, temos a classe **JTextAreaMemento** que encapsula o estado de um TextArea, e por fim temos a interface **Memento**.
 
 No link abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/memento)
+
+### Command
+
+Utilizamos o padrão Command quando queremos que nossa aplicação possa executar uma tarefa e também possa desfazê-lá, diferente do padrão **Memento** o Command não possui uma lista de estados, mas ele permite que o cliente possa parametrizar diferentes requisições, filas ou requisições de logs e suporta a reversão dessas tarefas.
+
+**Exemplo**
+
+Vamos utilizar como exemplo uma **Alexa** que possui os comandos ligar e desligar as luzes de um aparelho, utilizando o padrão Command criamos as duas classes TurnLightOnCommand e TurnLightOffCommand que são responsáveis por executar o e desfazer o comando ligar/desligar, depois criamos a interface GenericLight onde os aparelhos que desejam se integrar com a Alexa precisam implementá-la.
+
+Vamos analisar como ficaria no exemplo abaixo:
+
+```mermaid
+classDiagram
+    Alexa *..> Command
+    Command <|-- TurnLightOnCommand
+    Command <|-- TurnLightOffCommand
+    TurnLightOnCommand *..> GenericLight
+    TurnLightOffCommand *..> GenericLight
+    GenericLight <|-- PhilipsHueLight
+    GenericLight <|-- XiaomiLight
+    class Alexa {
+        -integration
+        +setRequest()
+    }
+    class Command {
+        <<Interface>>
+        +execute()
+    }
+    class TurnLightOnCommand {
+        -light : GenericLight
+        +TurnLightOnCommand(light)
+        +execute()
+    }
+    class TurnLightOffCommand {
+        -light : GenericLight
+        +TurnLightOffCommand(light)
+        +execute()
+    }
+    class GenericLight {
+        <<Interface>>
+        +turnOn()
+        +turnOff()
+    }
+    class PhilipsHueLight {
+        +turnOn()
+        +turnOff()
+    }
+    class XiaomiLight {
+        +turnOn()
+        +turnOff()
+    }
+```
+
+No link abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/command)
