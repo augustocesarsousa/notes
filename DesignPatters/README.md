@@ -927,3 +927,48 @@ classDiagram
 No link abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/command)
+
+### Iterator
+
+Utilizamos o padrão Iterator quando queremos percorrer uma coleção de objetos sem a necessidade de conhecer os detalhes desta estrutura.
+
+**Exemplo**
+
+Vamos utilizar como exemplo uma TV que possui uma lista de canais, mas nós não sabemos quais canais estão nesta lista, o Java já possui o padrão Iterator nativo na linguagem definimos então uma classe que implementa esse padrão e será a responsável por executar a iteração na lista de canais.
+
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+classDiagram
+    Iterable <|-- TV
+    Iterable ..> Iterator
+    TV ..> Iterator
+    TV ..> ChannelIterator
+    ChannelIterator --|> Iterator
+    class Iterable {
+        <<Interface>>
+        +iterator() Iterator
+    }
+    class TV {
+        -channels
+        +iterator() Iterator
+        +searchAvaiableChannels()
+    }
+    class Iterator {
+        +hasNext()
+        +next()
+    }
+    class ChannelIterator {
+        -channels
+        -index
+        +ChannelIterator(channels)
+        +hasNext()
+        +next()
+    }
+```
+
+Temos então a interface Iterable que possui o método iterator e a classe que deseja utilizá-la precisa implementá-lo, no nosso caso é a classe TV onde iremos iterar sobre os seus canais, temos também a classe ChannelIterator que implementa a interface Iterator com os métodos hasNext e next e que responsável por fazer a iteração.
+
+No link abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/iterator)
