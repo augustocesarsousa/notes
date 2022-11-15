@@ -939,7 +939,7 @@ Vamos utilizar como exemplo uma TV que possui uma lista de canais, mas nós não
 Vamos analisar o diagrama abaixo:
 
 ```mermaid
-classDiagram
+    classDiagram
     Iterable <|-- TV
     Iterable ..> Iterator
     TV ..> Iterator
@@ -972,3 +972,52 @@ Temos então a interface Iterable que possui o método iterator e a classe que d
 No link abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/iterator)
+
+### Observer
+
+Utilizamos o padrão Observer quando queremos manter um relacionamento 1-N entre objetos sem que eles fiquem acoplados, e que um objeto possa notificar outros quando necessário.
+
+**Exemplo**
+
+Vamos imaginas um cenário de uma festa surpresa onde a esposa e os amigos de uma pessoa estão o esperando em casa. Temos dois cenários possíveis, o primeiro onde a esposa fica ligando para o porteiro perguntando de o marido já chegou, nesse cenário temos um alto acoplamento entre os objetos onde a esposa ficará o tempo todo ligando para o porteiro esperando uma resposta verdadeira, o outro cenário seria a esposa informar ao porteiro que deseja ser notificada quando o marido chegar, dessa forma temos um acoplamento baixo onde a esposa pode continuar executando outras tarefas enquanto aguarda pela resposta e assim que houver uma resposta porteiro irá notificar todos os interessados.
+
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+    classDiagram
+    Subject <|-- Doorman
+    Subject *--|> Observer
+    Observer <|-- Wife
+    Observer <|-- Friend
+    Wife *--> Doorman
+    Friend *--> Doorman
+    class  {
+        -observers : List<Observer>
+        +attach(Observer)
+        +notifyObservers()
+    }
+    class Observer {
+        <<Interface>>
+        +update()
+    }
+    class Wife {
+        -doorman
+        +update()
+        +partyTime()
+    }
+    class Friend {
+        -doorman
+        +update()
+        +sendGift()
+    }
+    class Doorman {
+        -status
+        +getStatus()
+    }
+```
+
+Temos então a classe Subject que é responsável por adicionar na lista quem deseja ser notificado e também por notificar todos os interessados, depois temos as classes Wife e Friend que implementam a interface Observer e possuem o método update para serem notificados, por fim temos a classe Doorman que estende o Subject e é capaz de identificar a mudança do evento.
+
+No link abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/observer)
