@@ -991,7 +991,7 @@ Vamos analisar o diagrama abaixo:
     Observer <|-- Friend
     Wife *--> Doorman
     Friend *--> Doorman
-    class  {
+    class Subject {
         -observers : List<Observer>
         +attach(Observer)
         +notifyObservers()
@@ -1021,3 +1021,59 @@ Temos então a classe Subject que é responsável por adicionar na lista quem de
 No link abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/observer)
+
+### State
+
+Utilizamos o padrão State quando queremos alterar o comportamento de um objeto quando o seu estado mudar, permitindo que novos comportamentos sejam adicionados e integrados com os demais. Para isso modelamos os comportamentos possíveis através de States, definimos como serão realizadas as mudanças de estados e cada State irá tomar controle da execução de acordo com o estado interno do objeto aparentando como se o objeto tivesse mudado de classe.
+
+**Exemplo**
+
+Vamos utilizar como exemplo um fone bluetooth, nesse caso o objeto possui três estados, desligado, ligado e tocando música, ele também possui dois tipos de ação, primeiro um toque longo que muda do estado desligado para ligado ou ligado para desligado e o segundo um toque rápido que muda do estado ligado para tocando música. Temos que reforçar que alguns estados não podem mudar para outros de forma direta, exemplo, o fone não pode ir do estado desligado para tocando música diretamente, primeiro ele precisa passar pelo estado ligado antes, por isso é importante definir como serão feitas as mudanças.
+
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+    classDiagram
+    Client --> Headphone
+    Headphone *--|> HeadphoneState
+    HeadphoneState <|-- OnState
+    HeadphoneState <|-- OffState
+    HeadphoneState <|-- PlayingState
+    class Client {
+    }
+    class Headphone {
+        -state : HeadphoneState
+        -isOn
+        -isPlaying
+        +onClick()
+        +onLongClick()
+        +setState(state)
+    }
+    class HeadphoneState {
+        <<Interface>>
+        +click(Headphone)
+        +longClick(Headphone)
+    }
+    class OnState {
+        -instance
+        +getInstance()
+        +click(Headphone)
+        +longClick(Headphone)
+    }
+    class OffState {
+        -instance
+        +getInstance()
+        +click(Headphone)
+        +longClick(Headphone)
+    }
+    class PlayingState {
+        -instance
+        +getInstance()
+        +click(Headphone)
+        +longClick(Headphone)
+    }
+```
+
+Temos então o nosso Cliente que acessa a classe Headphone que contém os estados do fone, temos a interface HeadphoneState que contém os métodos de click e longClick e por fim os estados que implementam a interface e possuem a definição das mudanças.
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/state)
