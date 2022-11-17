@@ -1076,4 +1076,99 @@ Vamos analisar o diagrama abaixo:
 
 Temos então o nosso Cliente que acessa a classe Headphone que contém os estados do fone, temos a interface HeadphoneState que contém os métodos de click e longClick e por fim os estados que implementam a interface e possuem a definição das mudanças.
 
+No link abaixo temos a implementação em código:
+
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/state)
+
+### Strategy
+
+Utilizamos o padrão Strategy quando queremos que uma classe possa utilizar um algoritmo definido dinamicamente, podendo selecionar e trocar a lógica em tempo de execução.
+
+**Exemplo**
+
+Vamos imaginar o seguinte cenário, onde temos o objeto Trabalhador e ele possui três métodos, trabalhar, comer e mover, cada trabalhador pode executar esses métodos de formas diferentes, para isso poderíamos criar N variações para os métodos dentro da própria classe Trabalhador, mas ao utilizar Strategy podemos encapsular essas variações em lógicas separadas de forma mais simples tornando o sistema mais manutenível.
+
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+    classDiagram
+    Worker <|-- Developer
+    Worker <|-- HipsterDeveloper
+    Worker <|-- Pilot
+    Developer ..> MeatFootStrategy
+    Developer ..> DeveloperStrategy
+    Developer ..> CarStrategy
+    HipsterDeveloper ..> VeggieFootStrategy
+    HipsterDeveloper ..> DeveloperStrategy
+    HipsterDeveloper ..> BikeStrategy
+    Pilot ..> MeatFootStrategy
+    Pilot ..> PilotStrategy
+    Pilot ..> AirplaneStrategy
+    EatStrategy <-- MeatFootStrategy
+    EatStrategy <-- VeggieFootStrategy
+    TransportationStrategy <-- CarStrategy
+    TransportationStrategy <-- BikeStrategy
+    TransportationStrategy <-- AirplaneStrategy
+    WorkStrategy <-- DeveloperStrategy
+    WorkStrategy <-- PilotStrategy
+    class Worker {
+        <<Interface>>
+        +work()
+        +eat()
+        +move()
+    }
+    class Developer {
+        +work()
+        +eat()
+        +move()
+    }
+    class HipsterDeveloper {
+        +work()
+        +eat()
+        +move()
+    }
+    class Pilot {
+        +work()
+        +eat()
+        +move()
+    }
+    class EatStrategy {
+        <<Interface>>
+        +eat()
+    }
+    class MeatFootStrategy {
+        +eat()
+    }
+    class VeggieFootStrategy {
+        +eat()
+    }
+    class TransportationStrategy {
+        <<Interface>>
+        +move()
+    }
+    class BikeStrategy {
+        +move()
+    }
+    class CarStrategy {
+        +move()
+    }
+    class AirplaneStrategy {
+        +move()
+    }
+    class WorkStrategy {
+        <<Interface>>
+        +work()
+    }
+    class DeveloperStrategy {
+        +work()
+    }
+    class PilotStrategy {
+        +work()
+    }
+```
+
+Temos então a interface Worker que define os métodos de um trabalhador, temos as implementas do Worker, Developer, HipsterDeveloper e Pilot, onde cada um pode executar os métodos de formas diferentes, para isso criamos uma interface Strategy para cada métodos para que possamos criar as N implementações que desejamos.
+
+No link abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/strategy)
