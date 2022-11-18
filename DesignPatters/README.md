@@ -1172,3 +1172,80 @@ Temos então a interface Worker que define os métodos de um trabalhador, temos 
 No link abaixo temos a implementação em código:
 
 [Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/strategy)
+
+### Template Method
+
+Utilizamos o padrão Template Method quando queremos unir partes de um código que não variam com partes variáveis, podendo alterar certos pontos do código mantendo uma estrutura geral. Definimos então uma abstração com todos os pontos que podem ser variados e criamos um template que contenha as partes fixas e possua pontos de chamadas para as partes variáveis.
+
+**Exemplo**
+
+Vamos usar como exemplo uma loja que aplica descontos personalizados para seus clientes, exemplo, clientes especiais possuem uma categoria de desconto, porém em época de Black Friday os descontos são maiores que aqueles aplicados para os clientes especiais, temos então um serviço que irá aplicar o melhor desconto no carrinho do cliente dependendo do tipo de cliente e da época do ano, a lógica de verificação será delegada à um template que já irá possuir a estrutura básica de como executar a tarefa, porém os pontos de podem ser personalizados serão implementados pelas classes concretas.
+
+Vamos analisar o diagrama abaixo:
+
+```mermaid
+    classDiagram
+    BestOfferService --> Cart
+    Cart *--> Buyer
+    Cart *--> Product
+    BestOfferService *--> BestOfferTemplate
+    BestOfferTemplate <|-- RegularPrice
+    BestOfferTemplate <|-- BlackFriday
+    BestOfferTemplate <|-- CategoryDiscounts
+    BestOfferTemplate <|-- SpecialClient
+    class BestOfferService {
+        -templates : BestOfferTemplate[]
+        +calculateBestOffer(Cart)
+    }
+    class Cart {
+        -buyer
+        -items
+    }
+    class Buyer {
+        -name
+        -distance
+        -isSpecial
+    }
+    class Product {
+        -desc
+        -value
+        -weight
+        -category
+    }
+    class BestOfferTemplate {
+        <<Abstract>>
+        -cart
+        -regularItensPrice
+        -deliveryTax
+        -priceFactor
+        -deliveryFactor
+        #calculateDeliveryTax()
+        #calculateRegularItemPrice()
+        #calculateOffer()
+        +isReleAppliable()
+        #calibrateVariables()
+    }
+    class RegularPrice {
+        +isReleAppliable()
+        #calibrateVariables()
+    }
+    class BlackFriday {
+        +isReleAppliable()
+        #calibrateVariables()
+    }
+    class CategoryDiscounts {
+        -discountByCategory
+        +isReleAppliable()
+        #calibrateVariables()
+    }
+    class SpecialClient {
+        +isReleAppliable()
+        #calibrateVariables()
+    }
+```
+
+Temos então o serviço BestOfferService que acessa o carrinho de compras do cliente, temos a abstração da lógica de calcular o melhor desconto no template BestOfferTemplate e por fim as classes concretas que implementam as variações de descontos que podem ser aplicados.
+
+No link abaixo temos a implementação em código:
+
+[Exemplo](https://github.com/augustocesarsousa/design-patterns/tree/main/src/main/java/br/com/design_patters/behavioral/template)
