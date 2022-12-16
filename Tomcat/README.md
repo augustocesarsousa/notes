@@ -9,9 +9,9 @@ Instalação da versão 8.5.50 no Ubuntu 20.04
 ## Download e instalação
 
 ```
-wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.50/bin/apache-tomcat-8.5.50.tar.gz ./Download
-tar -xvzf ./Download/apache-tomcat-8.5.50.tar.gz
-sudo mv ./Download/apache-tomcat-8.5.50 /opt
+wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.50/bin/apache-tomcat-8.5.50.tar.gz
+tar -xvzf ./apache-tomcat-8.5.50.tar.gz
+sudo mv ./apache-tomcat-8.5.50 /opt
 ```
 
 ## Alterando a porta padrão
