@@ -63,8 +63,8 @@ O Team Scrum são as pessoas que irão implementar Product Backlog trazido pelo 
 
 ### Sprint Planning
 
-A Sprint Planning é cerimônia do Scrum onde o time e o Scrum Master se reunem com o PO para difinir a Meta da Sprint, nela o PO irá apresentar o Product Backlog e as Stories, o time irá avaliar e gerar o Sprint Backlog baseado nas suas capacidades.
-Para que o time aceite a Meta da Sprint, deve ser levado em consideração o Definition of Ready (DOR),que são os seguintes pré requisitos:
+A Sprint Planning é cerimônia do Scrum onde o time e o Scrum Master se reunem com o PO para difinir a Meta da Sprint, nela o PO irá apresentar o Product Backlog e as Story, o time irá avaliar e gerar o Sprint Backlog baseado nas suas capacidades.
+Para o time aceitar a Meta da Sprint, deve ser considerado o Definition of Ready (DOR), sendo os seguintes pré-requisitos:
 
 - A Meta precisa ser trabalhada em sessões de Refinamento do Product Backlog;
 - A Meta precisa ser estimada;
