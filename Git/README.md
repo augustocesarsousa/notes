@@ -137,7 +137,7 @@ Retornando os últimos 5 commits:
 git log -5
 ```
 
-### Log resumindo
+### Log resumido
 
 Podemos resumir a forma de retorno do log, basta adicionar o atributo **--oneline**, exemplo:
 
@@ -216,8 +216,102 @@ git checkout 2a76dea
 
 Para voltarmos ao commit principal, utilizamos aopção **checkout** mais a **bransh** em que estamos trabalhando, exemplo:
 
-Voltando para o commit principal da **bransh master**:
+Voltando para o commit principal da **bransh main**:
 
 ```
-git checkout master
+git checkout main
+```
+
+## Renomeando arquivos pelo Git
+
+O Git nos permite renomear arquivos e diretórios diretamento por ele, para isso utilizamos a opção **mv**, depois passamos o nome do aquivo ou diretório que queremos renomear e por fim o novo nome, exemplos:
+
+```
+git mv teste.txt teste_renomeado.txt
+```
+
+```
+git mv ./pasta_teste ./pasta_teste_renomeada
+```
+
+**Observação**
+
+Ao renomear um arquivo ou pasta pelo Git o mesmo já fica disponível para executar um commit, quando renomeamos arquivos ou pastas por outras formas, o Git entende que o arquivo ou pasta foi **deletado** e outro foi **criado**, sendo necessário adiciona-los para area de **tracked**, e, então realizar o commit.
+
+## Deletenado arquivos pelo Git
+
+Para deletar um arquivo ou pasta pelo Git, utilizamos a opção **rm** e passamos o que queremos deletar, exemplo:
+
+```
+git rm teste2.txt
+```
+
+```
+git rm ./pasta_teste2
+```
+
+**Observação**
+
+Assim como no renomeamento pelo Git, quando se delete algo por ele, o arquivo ou pasta já ficará pronto para a realização do commit.
+
+## Diferença entre commits
+
+Podemos ver a diferença entre commits utilizando a opção **diff**, ela nos permite comparar commits de várias formas, vejamos abaixo:
+
+- Diferença entre o estado atual e o último commit;
+
+  ```
+  git diff --staged
+  ```
+
+- Direfença entre o estado atual e outro commit;
+
+  ```
+  git diff 2a76dea
+  ```
+
+- Diferença entre dois commits.
+  ```
+  git diff 2a76dea..bdfb153
+  ```
+  **Observação**: o commit mais antigo vem primeiro.
+
+## Corrigindo mensagem do último commit
+
+Para corrigir a mensagem do último commit, realizamos um novo commit porém passamos o atributo **--amend** e passamos a nova mensagem que o Git irá substituir a mensagem do commit anterior,exemplo:
+
+```
+git commit --amend -m "Nova mensagem"
+```
+
+## Removendo arquivo do stage
+
+Caso queira remover um arquivo que está pronto para ser submetido (commit), o git nos permite remove-lo utilizando a opção **restore** mais o atributo **--staged**, exemplo:
+
+```
+git restore --staged teste.txt
+```
+
+## Desfazendo alteração em um arquivo
+
+Para desfazer as alterações de um arquivo, utilizamos a opção **checkout**, mais o nome do arquivo que queremos desfazer a alteração, exemplo:
+
+```
+git checkout teste2.txt
+```
+
+## Desfazendo alteração em todos os arquivos
+
+Para desfazer as alterações de todos os arquivos, utilizamos a opção **reset** mais a opção **HEAD** para retornar ao estado originaldo commit e o atributo **--hard** para sobrescrever os arquivos, exemplo:
+
+```
+git reset HEAD --hard
+```
+
+## Desfazendo o último commit
+
+Para desfazer o último commit, utilizamos a opção **reset** mais a opção **HEAD^** para retornar ao último commit e o atributo **--hard** para sobrescrever os arquivos, exemplo:
+
+```
+git reset HEAD^ --hard
 ```
