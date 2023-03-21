@@ -117,4 +117,107 @@ O Git nos permite visualizar todo o historico de commits de um repositório, par
 git log
 ```
 
-Com esse comando o Git irá listar todos o commits realizados, quando a quantidade de commits for maior que o tamanho da tela no fim da página irá aparecer o símbolo de dois ponto ( : ), para descer a ver os outros commits basta pressionar a **seta para baixo** e para sair da visualização pressione a tecla **q**.
+Com esse comando o Git irá listar todos o commits realizados, exibindo o hash, autor, data e a mensagem, quando a quantidade de commits for maior que o tamanho da tela no fim da página irá aparecer o símbolo de dois ponto ( : ), para descer a ver os outros commits basta pressionar a **seta para baixo** e para sair da visualização pressione a tecla **q**.
+
+### Pesquisando texto nas mensagens
+
+Podemos fazer pesquisas nas mensagens, para isso devemos substituir o símbolo de dois pontos no fim da página ( : ), por uma barra ( / ) e em seguida passamos o texto que queremos pesquisar, exemplo:
+
+```
+/mensagem teste
+```
+
+### Quantidade de retorno do log
+
+Podemos limitar a quantidade de retorno dos logs, para isso utilizamos o atributo **-** mais a quantidade que queremosretornar, exemplo:
+
+Retornando os últimos 5 commits:
+
+```
+git log -5
+```
+
+### Log resumindo
+
+Podemos resumir a forma de retorno do log, basta adicionar o atributo **--oneline**, exemplo:
+
+```
+git log --oneline
+```
+
+Tsmbém podemos limitar a quantidade de retorno do log resumido, exemplo:
+
+```
+git log --oneline -3
+```
+
+### Pesquisando log por data
+
+O Git nos permite fazer pesquisas de log por data, vamos ver os exemplos abaixo:
+
+- Pesquisando após 01-01-2023:
+
+  ```
+  git log --after="2023-1-1"
+  ```
+
+- Pesquisando antes de 01-01-2023:
+
+  ```
+  git log --before="2023-1-1"
+  ```
+
+- Pesquisando desde 01-01-2023:
+
+  ```
+  git log --since="2023-1-1"
+  ```
+
+- Pesquisando até 01-01-2023:
+
+  ```
+  git log --until="2023-1-1"
+  ```
+
+- Pesquisando entre 01-01-2023 e 01-02-2023:
+
+  ```
+  git log --since="2023-1-1 --until="2023-2-1"
+  ```
+
+- Pesquisando desde duas semanas atrás:
+
+  ```
+  git log --since="2 weeks ago"
+  ```
+
+- Pesquisando até cinco dias atrás:
+  ```
+  git log --since="fice days ago"
+  ```
+
+### Pesquisando log por autor
+
+O Git nos permite pesquisar log pelo autor dos commits utilizando o atributo **author**, exemplo:
+
+```
+git log --author="Augusto"
+```
+
+## Voltando para um commit
+
+O Git nos permite voltar para um commit para pordermos verificar como estava nosso projeto naquele determinado commit, para isso utilizamos a opção **checkout** mais os sete primeiro caracteras do hash do commit, exemplo:
+
+Voltando para o commit **2a76dea**;
+
+```
+git checkout 2a76dea
+```
+
+Para voltarmos ao commit principal, utilizamos aopção **checkout** mais a **bransh** em que estamos trabalhando, exemplo:
+
+Voltando para o commit principal da **bransh master**:
+
+```
+git checkout master
+```
