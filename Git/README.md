@@ -129,7 +129,7 @@ Podemos fazer pesquisas nas mensagens, para isso devemos substituir o símbolo d
 
 ### Quantidade de retorno do log
 
-Podemos limitar a quantidade de retorno dos logs, para isso utilizamos o atributo **-** mais a quantidade que queremosretornar, exemplo:
+Podemos limitar a quantidade de retorno dos logs, para isso utilizamos a opção ( **-** ) mais a quantidade que queremos retornar, exemplo:
 
 Retornando os últimos 5 commits:
 
@@ -139,7 +139,7 @@ git log -5
 
 ### Log resumido
 
-Podemos resumir a forma de retorno do log, basta adicionar o atributo **--oneline**, exemplo:
+Podemos resumir a forma de retorno do log, basta adicionar a opção **--oneline**, exemplo:
 
 ```
 git log --oneline
@@ -198,7 +198,7 @@ O Git nos permite fazer pesquisas de log por data, vamos ver os exemplos abaixo:
 
 ### Pesquisando log por autor
 
-O Git nos permite pesquisar log pelo autor dos commits utilizando o atributo **author**, exemplo:
+O Git nos permite pesquisar log pelo autor dos commits utilizando a opção **--author**, exemplo:
 
 ```
 git log --author="Augusto"
@@ -206,7 +206,7 @@ git log --author="Augusto"
 
 ## Voltando para um commit
 
-O Git nos permite voltar para um commit para pordermos verificar como estava nosso projeto naquele determinado commit, para isso utilizamos a opção **checkout** mais os sete primeiro caracteras do hash do commit, exemplo:
+O Git nos permite voltar para um commit para pordermos verificar como estava nosso projeto naquele determinado commit, para isso utilizamos o comando **checkout** mais os sete primeiro caracteras do hash do commit, exemplo:
 
 Voltando para o commit **2a76dea**;
 
@@ -224,7 +224,7 @@ git checkout main
 
 ## Renomeando arquivos pelo Git
 
-O Git nos permite renomear arquivos e diretórios diretamento por ele, para isso utilizamos a opção **mv**, depois passamos o nome do aquivo ou diretório que queremos renomear e por fim o novo nome, exemplos:
+O Git nos permite renomear arquivos e diretórios diretamento por ele, para isso utilizamos o comando **mv**, depois passamos o nome do aquivo ou diretório que queremos renomear e por fim o novo nome, exemplos:
 
 ```
 git mv teste.txt teste_renomeado.txt
@@ -240,7 +240,7 @@ Ao renomear um arquivo ou pasta pelo Git o mesmo já fica disponível para execu
 
 ## Deletenado arquivos pelo Git
 
-Para deletar um arquivo ou pasta pelo Git, utilizamos a opção **rm** e passamos o que queremos deletar, exemplo:
+Para deletar um arquivo ou pasta pelo Git, utilizamos o comando **rm** e passamos o que queremos deletar, exemplo:
 
 ```
 git rm teste2.txt
@@ -278,7 +278,7 @@ Podemos ver a diferença entre commits utilizando a opção **diff**, ela nos pe
 
 ## Corrigindo mensagem do último commit
 
-Para corrigir a mensagem do último commit, realizamos um novo commit porém passamos o atributo **--amend** e passamos a nova mensagem que o Git irá substituir a mensagem do commit anterior,exemplo:
+Para corrigir a mensagem do último commit, realizamos um novo commit porém passamos a opção **--amend** e passamos a nova mensagem que o Git irá substituir a mensagem do commit anterior,exemplo:
 
 ```
 git commit --amend -m "Nova mensagem"
@@ -286,7 +286,7 @@ git commit --amend -m "Nova mensagem"
 
 ## Removendo arquivo do stage
 
-Caso queira remover um arquivo que está pronto para ser submetido (commit), o git nos permite remove-lo utilizando a opção **restore** mais o atributo **--staged**, exemplo:
+Caso queira remover um arquivo que está pronto para ser submetido (commit), o git nos permite remove-lo utilizando a opção **restore** mais a opção **--staged**, exemplo:
 
 ```
 git restore --staged teste.txt
@@ -294,7 +294,7 @@ git restore --staged teste.txt
 
 ## Desfazendo alteração em um arquivo
 
-Para desfazer as alterações de um arquivo, utilizamos a opção **checkout**, mais o nome do arquivo que queremos desfazer a alteração, exemplo:
+Para desfazer as alterações de um arquivo, utilizamos o comando **checkout**, mais o nome do arquivo que queremos desfazer a alteração, exemplo:
 
 ```
 git checkout teste2.txt
@@ -302,7 +302,7 @@ git checkout teste2.txt
 
 ## Desfazendo alteração em todos os arquivos
 
-Para desfazer as alterações de todos os arquivos, utilizamos a opção **reset** mais a opção **HEAD** para retornar ao estado originaldo commit e o atributo **--hard** para sobrescrever os arquivos, exemplo:
+Para desfazer as alterações de todos os arquivos, utilizamos o comando **reset** mais a opção **HEAD** para retornar ao estado originaldo commit e a opção **--hard** para sobrescrever os arquivos, exemplo:
 
 ```
 git reset HEAD --hard
@@ -310,8 +310,40 @@ git reset HEAD --hard
 
 ## Desfazendo o último commit
 
-Para desfazer o último commit, utilizamos a opção **reset** mais a opção **HEAD^** para retornar ao último commit e o atributo **--hard** para sobrescrever os arquivos, exemplo:
+Para desfazer o último commit, utilizamos o comando **reset** mais a opção **HEAD^** para retornar ao último commit e a opção **--hard** para sobrescrever os arquivos, exemplo:
 
 ```
 git reset HEAD^ --hard
+```
+
+## Criando nova branch
+
+Para criar uma nova branch, utilizamos o comando **branch** e depois informamos o nome da branch que queremos criar, exemplo:
+
+```
+git branch novabranch
+```
+
+**Observação**
+
+Sempre utilize nomes que condizem ao que a branch se refere, exemplo, ao criar uma branch para uma nova funcionalidade, utilize o nome dela para nomear a branch.
+
+## Listando branches existentes
+
+Para listar todas as branches existentes no projeto, basta utilizarmoso comando `git branch`, o Git irá mostrar todas as brenches existentes no nomento e marcará com um asterisco ( \* ), a branch que está sendo usado no momento.
+
+## Alterando entre branches
+
+Para alterar em branches, utilizamos o comando **checkout** mais o nome da branch que deseja mudar, exemplo:
+
+```
+git checkout novabranch
+```
+
+## Deletando uma branch
+
+Para deletar uma branch utilizamos o comando **branch** com a opção **-d** e passamos o nome da branch que queremos deletar, exemplo:
+
+```
+git branch -d novabranch
 ```
