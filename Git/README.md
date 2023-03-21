@@ -347,3 +347,63 @@ Para deletar uma branch utilizamos o comando **branch** com a opção **-d** e p
 ```
 git branch -d novabranch
 ```
+
+## Realizando merge
+
+Para realizar um merge, estando na branch principal utilizamos o comando **merge**, mais o nome da branch que queremos juntar, exemplo:
+
+```
+git merge branchmerge
+```
+
+## Realizando rebase
+
+Para realizar um rebase, estando na branch principal utilizamos o comando **rebase**, mais o nome da branch que queremos juntar, exemplo:
+
+```
+git merge branchrebase
+```
+
+## Clonando repositório
+
+Para clonar um repositório, utilizamos o comando **clone**, mais o endereço onde o repositório está, esse repositório pode ser local ou remoto, exemplos:
+
+- Clonando de um repositório local;
+
+  ```
+  git clone /home/usuario/Downloads/repositorio-local
+  ```
+
+- Clonadno de um repositório remoto (Github).
+  ```
+  git clone https://github.com/usuario/repositorio-remoto.git
+  ```
+
+## Realizando um push
+
+Para realizar um enviar os commits realizados no nosso repositório para o repositório de origem, precisamos utilizar o comando **push**, exemplo:
+
+```
+git push
+```
+
+**Observação**
+
+O repositório de origem precisa ser do tipo **base repository** para que ele possa aceitar o envio dos commits.
+
+## Realizando fetch
+
+Para realizar um baixar as atualizações do repositório de origem, utilizamos o comando **fetch**, porém esse comando não faz o **merge** das atualizações, sendo nescessário a realização de um **rebase**, exemplo:
+
+```
+git fetch
+git rebase
+```
+
+## Realizando pull
+
+Assim como o comando **fetch**, o comando **pull** também baixa as atualizações do repositório de origem, porém ele já faz o **merge** dos commits, descartando a nescessidade de realizar um **rebase**, exemplo:
+
+```
+git pull
+```
