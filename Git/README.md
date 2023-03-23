@@ -69,11 +69,11 @@ git add .
 
 ## Ignorando arquivos
 
-Caso exista um arquivo/pasta onde não queremos que o Git gerêncie, podemos informá-lo para ignorá-los, fazemos isso informando-os em um arquivo **.gitignore**.
+Caso exista um arquivo/pasta onde não queremos que o Git gerencie, podemos informá-lo para ignorá-los, fazemos isso informando-os em um arquivo **.gitignore**.
 
 **Exemplos:**
 
-Executando o comando abaixo na raiz do projeto, informamos ao Git pra ignorar o arquivo **teste.txt**:
+Executando o comando abaixo na raiz do projeto, informamos ao Git para ignorar o arquivo **teste.txt**:
 
 ```
 echo "teste.txt" >> .gitignore
@@ -91,7 +91,7 @@ Para ignorar arquivos pela extensão, utilizamos um asterisco (\*) e depois a ex
 echo "*.mp4" >> .gitignore
 ```
 
-Se quisermos que ele ignore um arquivo ou pasta, mas não sabemos onde ele esta dentro dos diretórios, utilizamos dois asteriscos (\*\*) antes do nome:
+Se quisermos que ele ignore um arquivo ou pasta, mas não sabemos onde ele está dentro dos diretórios, utilizamos dois asteriscos (\*\*) antes do nome:
 
 ```
 echo "**teste2.txt" >> .gitignore
@@ -99,7 +99,7 @@ echo "**teste2.txt" >> .gitignore
 
 ## Executando um commit
 
-Um commit é quando enviamos os arquivos modificados para a área de **stage** do Git, de modo mais prático funciona como uma "foto" do estado do arquivo na hora que o commit foi feito, para realizar um commit os arquivos precisam estar na área de **tracked**, também podemos passar uma messagem do que foi modificado no commit, utilizando o prefixo **-m**.
+Um commit é quando enviamos os arquivos modificados para a área de **stage** do Git, de modo mais prático funciona como uma "foto" do estado do arquivo na hora que o commit foi feito, para realizar um commit os arquivos precisam estar na área de **tracked**, também podemos passar uma mensagem do que foi modificado no commit, utilizando o prefixo **-m**.
 
 **Exemplo**
 
@@ -111,7 +111,7 @@ Todo commit criado gera um código de identificação também conhecido como **h
 
 ## Verificando históricos de commits (log)
 
-O Git nos permite visualizar todo o historico de commits de um repositório, para isso utilizamos o comando abaixo:
+O Git nos permite visualizar todo o histórico de commits de um repositório, para isso utilizamos o comando abaixo:
 
 ```
 git log
@@ -145,7 +145,7 @@ Podemos resumir a forma de retorno do log, basta adicionar a opção **--oneline
 git log --oneline
 ```
 
-Tsmbém podemos limitar a quantidade de retorno do log resumido, exemplo:
+Também podemos limitar a quantidade de retorno do log resumido, exemplo:
 
 ```
 git log --oneline -3
@@ -193,7 +193,7 @@ O Git nos permite fazer pesquisas de log por data, vamos ver os exemplos abaixo:
 
 - Pesquisando até cinco dias atrás:
   ```
-  git log --since="fice days ago"
+  git log --since="five days ago"
   ```
 
 ### Pesquisando log por autor
@@ -206,7 +206,7 @@ git log --author="Augusto"
 
 ## Voltando para um commit
 
-O Git nos permite voltar para um commit para pordermos verificar como estava nosso projeto naquele determinado commit, para isso utilizamos o comando **checkout** mais os sete primeiro caracteras do hash do commit, exemplo:
+O Git nos permite voltar para um commit para podermos verificar como estava nosso projeto naquele determinado commit, para isso utilizamos o comando **checkout** mais os sete primeiros caracteres do hash do commit, exemplo:
 
 Voltando para o commit **2a76dea**;
 
@@ -214,7 +214,7 @@ Voltando para o commit **2a76dea**;
 git checkout 2a76dea
 ```
 
-Para voltarmos ao commit principal, utilizamos aopção **checkout** mais a **bransh** em que estamos trabalhando, exemplo:
+Para voltarmos ao commit principal, utilizamos a opção **checkout** mais a **bransh** em que estamos trabalhando, exemplo:
 
 Voltando para o commit principal da **bransh main**:
 
@@ -224,7 +224,7 @@ git checkout main
 
 ## Renomeando arquivos pelo Git
 
-O Git nos permite renomear arquivos e diretórios diretamento por ele, para isso utilizamos o comando **mv**, depois passamos o nome do aquivo ou diretório que queremos renomear e por fim o novo nome, exemplos:
+O Git nos permite renomear arquivos e diretórios diretamente por ele, para isso utilizamos o comando **mv**, depois passamos o nome do arquivo ou diretório que queremos renomear e por fim o novo nome, exemplos:
 
 ```
 git mv teste.txt teste_renomeado.txt
@@ -236,9 +236,9 @@ git mv ./pasta_teste ./pasta_teste_renomeada
 
 **Observação**
 
-Ao renomear um arquivo ou pasta pelo Git o mesmo já fica disponível para executar um commit, quando renomeamos arquivos ou pastas por outras formas, o Git entende que o arquivo ou pasta foi **deletado** e outro foi **criado**, sendo necessário adiciona-los para area de **tracked**, e, então realizar o commit.
+Ao renomear um arquivo ou pasta pelo Git o mesmo já fica disponível para executar um commit, quando renomeamos arquivos ou pastas por outras formas, o Git entende que o arquivo ou pasta foi **deletado** e outro foi **criado**, sendo necessário adicioná-los para área de **tracked**, e então, realizar o commit.
 
-## Deletenado arquivos pelo Git
+## Deletando arquivos pelo Git
 
 Para deletar um arquivo ou pasta pelo Git, utilizamos o comando **rm** e passamos o que queremos deletar, exemplo:
 
@@ -264,7 +264,7 @@ Podemos ver a diferença entre commits utilizando a opção **diff**, ela nos pe
   git diff --staged
   ```
 
-- Direfença entre o estado atual e outro commit;
+- Diferença entre o estado atual e outro commit;
 
   ```
   git diff 2a76dea
@@ -286,7 +286,7 @@ git commit --amend -m "Nova mensagem"
 
 ## Removendo arquivo do stage
 
-Caso queira remover um arquivo que está pronto para ser submetido (commit), o git nos permite remove-lo utilizando a opção **restore** mais a opção **--staged**, exemplo:
+Caso queira remover um arquivo que está pronto para ser submetido (commit), o git nos permite removê-lo utilizando a opção **restore** mais a opção **--staged**, exemplo:
 
 ```
 git restore --staged teste.txt
@@ -302,19 +302,32 @@ git checkout teste2.txt
 
 ## Desfazendo alteração em todos os arquivos
 
-Para desfazer as alterações de todos os arquivos, utilizamos o comando **reset** mais a opção **HEAD** para retornar ao estado originaldo commit e a opção **--hard** para sobrescrever os arquivos, exemplo:
+Para desfazer as alterações de todos os arquivos, utilizamos o comando **reset** mais a opção **HEAD** para retornar ao estado original do commit e a opção **--hard** para sobrescrever os arquivos, exemplo:
 
 ```
 git reset HEAD --hard
 ```
 
-## Desfazendo o último commit
+## Desfazendo commit
 
-Para desfazer o último commit, utilizamos o comando **reset** mais a opção **HEAD^** para retornar ao último commit e a opção **--hard** para sobrescrever os arquivos, exemplo:
+Para desfazer um commit, utilizamos o comando **reset** mais a opção **HEAD** e suas variações, exemplos:
 
-```
-git reset HEAD^ --hard
-```
+- Desfazendo o útimo commit, mas mantendo os arquivos alterados;
+
+  ```
+  git reset HEAD^ ou git reset HEAD~1
+  ```
+
+- Desfazendo o último commit e as alterações nos arquivos;
+
+  ```
+  git reset HEAD^ --hard
+  ```
+
+- Desfazendo mais de um commit ao mesmo tempo.
+  ```
+  git reset HEAD~3
+  ```
 
 ## Criando nova branch
 
@@ -330,11 +343,11 @@ Sempre utilize nomes que condizem ao que a branch se refere, exemplo, ao criar u
 
 ## Listando branches existentes
 
-Para listar todas as branches existentes no projeto, basta utilizarmoso comando `git branch`, o Git irá mostrar todas as brenches existentes no nomento e marcará com um asterisco ( \* ), a branch que está sendo usado no momento.
+Para listar todas as branches existentes no projeto, basta utilizarmos o comando `git branch`, o Git irá mostrar todas as brenches existentes no momento e marcará com um asterisco ( \* ), a branch que está sendo usada no momento.
 
-## Alterando entre branches
+## Alternando entre branches
 
-Para alterar em branches, utilizamos o comando **checkout** mais o nome da branch que deseja mudar, exemplo:
+Para alternar em branches, utilizamos o comando **checkout** mais o nome da branch que deseja mudar, exemplo:
 
 ```
 git checkout novabranch
@@ -374,14 +387,14 @@ Para clonar um repositório, utilizamos o comando **clone**, mais o endereço on
   git clone /home/usuario/Downloads/repositorio-local
   ```
 
-- Clonadno de um repositório remoto (Github).
+- Clonando de um repositório remoto (Github).
   ```
   git clone https://github.com/usuario/repositorio-remoto.git
   ```
 
 ## Realizando um push
 
-Para realizar um enviar os commits realizados no nosso repositório para o repositório de origem, precisamos utilizar o comando **push**, exemplo:
+Para enviar os commits realizados no nosso repositório para o repositório de origem, precisamos utilizar o comando **push**, exemplo:
 
 ```
 git push
@@ -393,7 +406,7 @@ O repositório de origem precisa ser do tipo **base repository** para que ele po
 
 ## Realizando fetch
 
-Para realizar um baixar as atualizações do repositório de origem, utilizamos o comando **fetch**, porém esse comando não faz o **merge** das atualizações, sendo nescessário a realização de um **rebase**, exemplo:
+Para baixar as atualizações do repositório de origem, utilizamos o comando **fetch**, porém esse comando não faz o **merge** das atualizações, sendo necessário a realização de um **rebase**, exemplo:
 
 ```
 git fetch
@@ -402,8 +415,42 @@ git rebase
 
 ## Realizando pull
 
-Assim como o comando **fetch**, o comando **pull** também baixa as atualizações do repositório de origem, porém ele já faz o **merge** dos commits, descartando a nescessidade de realizar um **rebase**, exemplo:
+Assim como o comando **fetch**, o comando **pull** também baixa as atualizações do repositório de origem, porém ele já faz o **merge** dos commits, descartando a necessidade de realizar um **rebase**, exemplo:
 
 ```
 git pull
 ```
+
+## Bare Repository
+
+Bare Repository são repositórios centrais que aceitam commits de outros usuários, um exemplo é o Github, para criar um repositório do tipo **bare**, utilizamos o comando **init**, mais a opção **--bare**, exemplo:
+
+```
+git init --bare
+```
+
+## Tags
+
+Tags são estados de um repositório que não pode receber mais commits, ele é muito utilizado quando queremos criar uma versão estável do projeto, exemplo uma versão **1.0**. Para criar uma tag utilizamos o comando **tag** mais o nome que queremos dar para ela, exemplo:
+
+```
+git tag v1.0
+```
+
+### Enviando uma tag para o repositório origem
+
+Ao criarmos uma tag no repositório local, precisamos enviá-la para o repositório origem, para isso utilizamos os comandos **push**, mais **origin**, e por fim o nome da tag criada, exemplo:
+
+```
+git push origin v1.0
+```
+
+### Alternando para uma tag
+
+Para alternar para uma tag, utilizamos o comando **checkout**, mais o nome da tag que queremos acessar, exemplo:
+
+```
+git checkout v1.0
+```
+
+Lembrando que quando estamos em uma tag, não podemos efetuar commits.
