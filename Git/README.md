@@ -26,12 +26,30 @@ git --version
 
 ## Configurando usuário e email
 
-Para que o Git possa saber quem está fazendo as alterações nos arquivos, precisamos configurar nosso usuário e email, utilizamos os dois comandos abaixo:
+Para que o Git possa saber quem está fazendo as alterações nos arquivos, precisamos configurar nosso usuário e email, isso pode ser feito draíse forma global, ou seja, todos os repositórios usarão essa configuração, ou pode ser feito por projeto, vejamos os exemplos:
 
-```
-git config --global user.name "nome do usuário"
-git config --global user.email "email do usuário"
-```
+- Configurando nome do usuário globalmente;
+
+  ```
+  git config --global user.name "nome do usuário"
+  ```
+
+- Configurando nome do usuário dentro de um projeto (precisa estar dentro da pasta raiz do projeto);
+
+  ```
+  git config user.name "nome do usuário"
+  ```
+
+- Configurando email do usuário globalmente;
+
+  ```
+  git config --global user.email "email do usuário"
+  ```
+
+- Configurando email do usuário dentro de um projeto (precisa estar dentro da pasta raiz do projeto);
+  ```
+  git config user.email "email do usuário"
+  ```
 
 ## Iniciando um repositório Git
 
@@ -43,11 +61,51 @@ git init
 
 ## Verificando o status do repositório
 
-O Git nos da opção de visualizar a situação do repositório, para isso utilizamos o comando `git status`, ele nos permite ver os status dos arquivos e outras situações.
+O Git nos da opção de visualizar a situação do repositório, para isso utilizamos o comando **status**, ele nos permite ver os status dos arquivos e outras situações, exemplo:
+
+```
+git status
+```
+
+## Configurando repositório remoto
+
+O Git nos permite trabalhar com repositórios remoto, abaixo veremos como fazer as configurações.
+
+### Visualizando repositório remoto
+
+Para visualizar o repositório remoto, utilizamos o comando **remote**, mais a opção **-v**, exemplo:
+
+```
+git remote -v
+```
+
+### Adicionando repositório remoto
+
+Para adicionar um repositório remoto, utilizamos os comandos **remote add origin**, e passamos o endereço do repositório que queremos adicionar, no exemplo abaixo vamos adicionar um repositório do **Github**:
+
+```
+git remote add origin https://github.com/nome_do_usuario/nome_do_repositorio.git
+```
+
+### Alterando repositório remoto
+
+Para alterar um repositório remoto, utilizamos os comandos **remote set-url**, e passamos o repositório que queremos mudar, exemplo:
+
+```
+git remote set-url origin https://github.com/nome_do_usuario/nome_do_novo_repositorio.git
+```
+
+### Deletando repositório remoto
+
+Para deletar um repositório remoto, utilizamos os comandos **remote remove origin**, exemplo:
+
+```
+git remote remove origin
+```
 
 ## Adicionando arquivo para a área da Tracked (monitoramento)
 
-Após iniciado o gerenciamento do Git no projeto, ele irá listar todos os arquivos como **Untracked** (não monitorados), precisamos então informar para o Git quais arquivos queremos que ele gerencia, isso pode ser feito de três formas:
+Após iniciado o gerenciamento do Git no projeto, ele irá listar todos os arquivos como **Untracked** (não monitorados), precisamos então informar para o Git quais arquivos queremos que ele gerencie, isso pode ser feito de três formas:
 
 1. Adicionando um arquivo;
 
@@ -107,7 +165,7 @@ Um commit é quando enviamos os arquivos modificados para a área de **stage** d
 git commit -m "mensagem do commit"
 ```
 
-Todo commit criado gera um código de identificação também conhecido como **hash**, utilizaremos ele mais a frente.
+Todo commit criado gera um código de identificação também conhecido como **hash**, utilizaremos ele mais à frente.
 
 ## Verificando históricos de commits (log)
 
@@ -117,7 +175,7 @@ O Git nos permite visualizar todo o histórico de commits de um repositório, pa
 git log
 ```
 
-Com esse comando o Git irá listar todos o commits realizados, exibindo o hash, autor, data e a mensagem, quando a quantidade de commits for maior que o tamanho da tela no fim da página irá aparecer o símbolo de dois ponto ( : ), para descer a ver os outros commits basta pressionar a **seta para baixo** e para sair da visualização pressione a tecla **q**.
+Com esse comando o Git irá listar todos o commits realizados, exibindo o hash, autor, data e a mensagem, quando a quantidade de commits for maior que o tamanho da tela no fim da página irá aparecer o símbolo de dois pontos ( : ), para descer a ver os outros commits basta pressionar a **seta para baixo** e para sair da visualização pressione a tecla **q**.
 
 ### Pesquisando texto nas mensagens
 
@@ -214,9 +272,9 @@ Voltando para o commit **2a76dea**;
 git checkout 2a76dea
 ```
 
-Para voltarmos ao commit principal, utilizamos a opção **checkout** mais a **bransh** em que estamos trabalhando, exemplo:
+Para voltarmos ao commit principal, utilizamos a opção **checkout** mais a **branch** em que estamos trabalhando, exemplo:
 
-Voltando para o commit principal da **bransh main**:
+Voltando para o commit principal da **branch main**:
 
 ```
 git checkout main
@@ -252,7 +310,7 @@ git rm ./pasta_teste2
 
 **Observação**
 
-Assim como no renomeamento pelo Git, quando se delete algo por ele, o arquivo ou pasta já ficará pronto para a realização do commit.
+Assim como renomeando pelo Git, quando se deleta algo por ele, o arquivo ou pasta já ficará pronto para a realização do commit.
 
 ## Diferença entre commits
 
@@ -312,7 +370,7 @@ git reset HEAD --hard
 
 Para desfazer um commit, utilizamos o comando **reset** mais a opção **HEAD** e suas variações, exemplos:
 
-- Desfazendo o útimo commit, mas mantendo os arquivos alterados;
+- Desfazendo o último commit, mas mantendo os arquivos alterados;
 
   ```
   git reset HEAD^ ou git reset HEAD~1
@@ -343,7 +401,7 @@ Sempre utilize nomes que condizem ao que a branch se refere, exemplo, ao criar u
 
 ## Listando branches existentes
 
-Para listar todas as branches existentes no projeto, basta utilizarmos o comando `git branch`, o Git irá mostrar todas as brenches existentes no momento e marcará com um asterisco ( \* ), a branch que está sendo usada no momento.
+Para listar todas as branches existentes no projeto, basta utilizarmos o comando `git branch`, o Git irá mostrar todas as brnches existentes no momento e marcará com um asterisco ( \* ), a branch que está sendo usada no momento.
 
 ## Alternando entre branches
 
@@ -454,3 +512,19 @@ git checkout v1.0
 ```
 
 Lembrando que quando estamos em uma tag, não podemos efetuar commits.
+
+## Baixando pull request
+
+Quando recebemos um pull request em nosso repositório, o correto é baixarmos e testá-lo antes de fazer o aceite ou recusa, no comando abaixo vamos simular o download de pull request **#3** já criando uma branch **analise_pr3**:
+
+```
+git fetch origin pull/3/head:analise_pr3
+```
+
+No comando acima utilizamos o comando **fetch** para baixar os arquivos sem fazer o **merge** com a branch atual, depois informamos a origem com o comando **origin**, informamos que a origem é do **pull**, número **3**, e, em seguida criamos a branch **analise_pr3** com o comando **head:analise_pr3**.
+
+Após executado o comando acima, precisamos mudar para a nova branch utilizando o comando abaixo, para fazer os testes e por fim aceitar ou recusar o pull request:
+
+```
+git checkout analise_pr3
+```
