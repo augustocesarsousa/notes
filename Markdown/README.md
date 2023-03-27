@@ -272,26 +272,28 @@ Para criar listas com subníveis, utilizamos um **tab** nos itens de nível abai
 **Exemplo 1**
 
 ```
-1. Item 1
-    1.1. Item 1.1
-    1.2. Item 1.2
-2. Item 2
-    2.1. Item 2.1
-3. Item 3
-    3.1. Item 3.1
-    3.2. Item 3.2
+1. Aves
+   1. Beija-flor
+   2. Tucano
+2. Mamíferos
+   1. Gato
+   2. Cachorro
+3. Insetos
+   1. Barata
+   2. Aranha
 ```
 
 **Resultado**
 
-1. Item 1
-   1.1. Item 1.1
-   1.2. Item 1.2
-2. Item 2
-   2.1. Item 2.1
-3. Item 3
-   3.1. Item 3.1
-   3.2. Item 3.2
+1. Aves
+   1. Beija-flor
+   2. Tucano
+2. Mamíferos
+   1. Gato
+   2. Cachorro
+3. Insetos
+   1. Barata
+   2. Aranha
 
 **Exemplo 2**
 
